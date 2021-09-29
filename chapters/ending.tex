@@ -1,0 +1,459 @@
+\section{Cel pracy}
+Mimo, że przedmiot ,,Logika dla Informatyków'' nie jest przedmiotem trudnym, sprawia on dużo problemów części nowych studentów, którzy po raz pierwszy spotykają się z takimi typami zadań. Tacy studenci często potrzebują jakiegoś wsparcia, materiałów poza wykładem. Choć dostępna jest literatura która wyjaśnia poszczególne zagadnienia, studenci pierwszego roku często nie potrafią z niej korzystać, a forma przedmiotu sprawia, że nie zrozumienie pierwszych kilku tematów, utrudnia znacznie zrozumienie dalszego materiału. Zbierając cały materiał w przystępnej formie można umożliwić studentom lepszy start, dając im szanse dogonić lepiej przygotowanych kolegów.
+
+Powyższa praca stanowi szkic podręcznika, który każdy student pierwszego roku, bez znajomości materiału, mógłby przeczytać, w celu lepszego zrozumienia poszczególnych działów przedmiotu ,,Logika dla Informatyków''. Poza zaprezentowaną wyżej częścią pisemną, w skład pracy wchodzą także materiały audiowizualne, w których autor pracy przedstawia niektóre zagadnienia. 
+
+Część audiowizualna udostępniana była studentom pierwszego roku w roku akademickim 2020/2021. Materiały te, uzupełnione o materiały autorstwa Bartosza Bednarczyka i Anny Karykowskiej, spotkały się z pozytywnym odbiorem. Każdy z udostępnionych filmów zbierał kilkaset wyświetleń (150-350). Filmy były więc regularnie oglądane, co świadczy o tym, że przynajmniej część studentów odbierała je pozytywnie i uznawała za pomocne.
+
+Część pisemna w pewnej mierze pokrywa się z materiałami audiowizualnymi, pokazując podobne przykłady i podobne sposoby rozumowania. Dodatkowo, niektóre przykłady prezentowane w części pisemnej wzorowane były na materiałach autorstwa Bartosza Bednarczyka i Anny Karykowskiej, udostępnionych studentom w ramach tej samej inicjatywy co część audiowizualna tej pracy.\\
+Przykłady \ref{example:counterexample} oraz \ref{example:even-square} z rozdziału \ref{chapter:proofs}, a także przykłady \ref{example:composition} oraz \ref{example:juices-and-bars} z rozdziału \ref{chapter:relation} wzorowane były na przykładach zaprezentowanych w materiałach Anny Karykowskiej. Przykłady \ref{example:indirect} oraz \ref{example:irrational} z rozdziału \ref{chapter:proofs} a także przykład \ref{example:indexed-family} z rozdziału \ref{chapter:sets} wzorowane były na przykładach zaprezentowanych w materiałach Bartosza Bednarczyka.
+
+Celem pracy jest pomoc studentom w zrozumieniu materiału. Przykładowe rozwiązania nie są przedstawiane w celu umożliwiania studentom bezmyślnego kopiowania rozwiązań, a raczej stanowią pomoc dydaktyczną, by na prostych przykładach zrozumieć poszczególne pojęcia, a także oswoić się z popularnymi typami zadań: nauczyć się czytać ich treść i dowiedzieć się, jak powinno się za takie zadania zabierać. 
+
+\section{Cel przedmiotu}
+Choć ,,Logika dla Informatyków'' jest przedmiotem obowiązkowym, nie jest to jedyny powód by dobrze zrozumieć przedstawiony materiał.
+
+Materiał przestawiony na przedmiocie pomaga studentom zapoznać się ze światem matematyki, z którym studenci muszą być zaznajomieni przez cały okres studiów. Umiejętność czytania treści i definicji czy przeprowadzania i przedstawiania prostych rozumowań to umiejętności niezbędne by w przyszłości poradzić sobie na trudniejszych przedmiotach, a także w dalszej karierze zawodowej. 
+
+Język logiki jest także nieodłączną częścią informatyki, zarówno teoretycznej jak i praktycznej. Wiele pojęć i koncepcji przedstawianych jest w języku, którego część studenci poznają właśnie na przedmiocie ,,Logika dla Informatyków''. Przeprowadzając dowody na temat struktur danych z których korzystają programiści, posługujemy się właśnie językiem logiki.
+
+\subsection{Dowody poprawności algorytmów}
+
+Jednym z zastosowań logiki w praktyce jest dowodzenie, że dany algorytm jest poprawny. 
+
+Algorytm będziemy uznawać za \textbf{poprawny}, jeśli:
+
+\begin{itemize}
+    \item Przy poprawnym wejściu, algorytm zawsze zwraca poprawne (spełniające specyfikację) wyjście
+    \item Przy poprawnym wejściu algorytm zawsze się zatrzymuje
+\end{itemize}
+
+Żeby pokazać, jak logika może zostać użyta do dowodzenia poprawności algorytmów, użyjemy dość prostego i intuicyjnego algorytmu sortowania bąbelkowego i udowodnimy jego poprawność używając technik poznanych w tej pracy.
+\clearpage
+
+\begin{example}
+Dany jest algorytm:
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{Wejście}
+\SetKwInOut{Output}{Wyjście}
+
+\Input{
+Ciąg liczb naturalnych \m{A = (a_1,a_2,\dots,a_n)}\newline
+Liczba naturalna \m{n}
+}
+\Output{Posortowany rosnąco ciąg \m{A}}
+\
+
+\For{\m{i=n} to \m{1}}{
+    \For{\m{j=1} to \m{i-1}}{
+        \If{\m{ a_j > a_{j+1} }}{
+            \textit{zamień(\m{a_j, a_{j+1}})}
+        }
+    }
+}
+
+\SetAlgoLined
+
+
+ \caption{Sortowanie bąbelkowe}
+\end{algorithm}
+
+Chcemy pokazać, że \textit{Algorytm} jest poprawny, to znaczy, że jeśli podamy mu poprawne wejście (skończony ciąg \m{A} liczb naturalnych oraz jego długość), \textit{Algorytm} zawsze się zatrzyma i zawsze zwróci poprawne wyjście (posortowany rosnąco ciąg \m{A}).
+
+Zacznijmy od rozbicia naszego programu na dwie części: \textbf{pętlę zewnętrzną} i \textbf{pętlę wewnętrzną}. Pokażemy następnie pewne twierdzenie o pętli wewnętrznej i pewne twierdzenie o pętli zewnętrznej, których użyjemy by pokazać prawdziwość algorytmu sortowania bąbelkowego.
+
+\begin{definition}[Pętla wewnętrzna]
+\textbf{Pętlą wewnętrzną} nazywamy następującą część algorytmu sortowania bąbelkowego:
+
+\begin{algorithm}
+    \For{\m{j=1} to \m{i-1}}{
+        \If{\m{ a_j > a_{j+1} }}{
+            \textit{zamień(\m{a_j, a_{j+1}})}
+        }
+    }
+\end{algorithm}
+\end{definition}
+
+\begin{definition}[Pętla zewnętrzna]
+\textbf{Pętlą zewnętrzną } nazywamy następującą część algorytmu sortowania bąbelkowego:
+
+\begin{algorithm}
+    \For{\m{i=n} to \m{1}}{
+        \textit{pętla wewnętrzna}
+    }
+\end{algorithm}
+\end{definition}
+
+\begin{theo}[Problem stopu algorytmu sortowania bąbelkowego]
+\label{theo:bubble_stop}
+Dla każdych poprawnych danych wejściowych, algorytm sortowania bąbelkowego zawsze się zatrzymuje.
+\end{theo}
+
+\begin{proof}
+Dowód tego twierdzenia jest dość prosty. Zauważmy, że dla poprawnych danych wejściowych, pętla wewnętrzna wykona się \m{i-1} razy, dla \m{i} idącego od \m{n} do \m{1}. To znaczy, sumarycznie, wykona się \m{n-1 + n-2 + \dots + 1 = \frac{n(n-1)}{2}} razy. Wykonanie pętli czasem może skutkować wywołaniem procedury \textit{zamień}, ale niezależnie od tego, ile razy zostanie ona wykonana, pętla zawsze się zakończy. To znaczy, że algorytm sortowania bąbelkowego zawsze zatrzyma się dla poprawnych danych.
+\end{proof}
+
+\begin{theo}[Niezmiennik pętli wewnętrznej]
+\label{theo:invariant_inner_loop}
+Dla dowolnej liczby naturalnej \m{m} i dowolnego ciągu liczb naturalnych \m{A}, po \m{m}-tym przejściu pętli wewnętrznej, maksymalny element ciągu \m{(a_1,a_2,\dots,a_{m+1})} znajdzie się na pozycji \m{m+1}.
+\end{theo}
+
+\begin{proof}
+Udowodnimy to używając \textbf{indukcji}, poznanej w rozdziale \ref{chapter:induction}
+
+Niech własność \m{\varphi(m)} mówi, że dla dowolnego ciągu liczb naturalnych \m{A}, po \m{m}-tym przejściu pętli wewnętrznej, maksymalny element ciągu \m{(a_1,a_2,\dots,a_{m+1})} znajduje się na pozycji \m{m+1}.
+
+Zdefiniujmy \m{X} jako
+
+\[
+    X = \set{m \in \mathbb{N}}{\varphi(m)}
+\]
+
+Pokażemy, że \m{X = \mathbb{N}}. Użyjemy do tego indukcji w wersji \ref{theo:induction-v1}.
+
+\begin{itemize}
+    \item \textbf{Podstawa indukcji:}
+    
+    Weźmy dowolny ciąg liczb naturalnych \m{A}. Musimy pokazać, że w zerowym przejściu pętli (tzn. przed pierwszym przejściem), element maksymalny ciągu \m{(a_1)} znajduje się na pozycji \m{1}. Maksymalnym elementem tego ciągu jest oczywiście \m{a_1}, który znajduje się na pozycji \m{1}, więc \m{0 \in X}.
+    
+    \item \textbf{Krok indukcyjny:}
+    
+    Weźmy dowolną liczbę naturalną \m{m} i załóżmy, że \m{m \in X}, czyli, że dla dowolnego ciągu liczb naturalnych \m{A}, po \m{m}-tym przejściu pętli wewnętrznej, maksymalny element ciągu \m{(a_1,a_2,\dots,a_{m+1})} znajdzie się na pozycji \m{m+1}.
+    
+    Musimy pokazać, że \m{m+1 \in X}. Trzeba pokazać, że dla dowolnego ciągu liczb naturalnych \m{A}, po \m{(m+1)}-wszym przejściu pętli wewnętrznej, maksymalny element ciągu \m{(a_1,a_2,\dots,a_{m+2})} znajdzie się na pozycji \m{m+2}.
+    
+    Weźmy dowolny ciąg liczb naturalnych \m{A}. Wiemy, z założenia indukcyjnego, że dla tego ciągu, po \m{m}-tym przejściu pętli wewnętrznej, maksymalny element \m{(a_1,a_2,\dots,a_{m+1})} znajduje się na pozycji \m{m+1}. W przejściu \m{(m+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_{m+2})} jest więc albo element \m{a_{m+1}}, albo element \m{a_{m+2}}. Rozpatrzmy więc dwa przypadki:
+    
+    \begin{itemize}
+        \item W przejściu \m{(m+1)}-wszym, maksymalny element znajduje się na pozycji \m{m+1}. Wtedy, warunek ,,\textbf{if} \m{a_{m+1} > a_{m+2}}'' zwróci \textbf{True}, wykona się więc procedura \textit{zamień}. Po \m{(m+1)}-wszym przejściu pętli, element ten znajdzie się więc na pozycji \m{m+2}, a to chcieliśmy udowodnić.
+        
+        \item  W przejściu \m{(m+1)}-wszym, maksymalny element znajduje się na pozycji \m{m+2}. Wtedy, warunek ,,\textbf{if} \m{a_{m+1} > a_{m+2}}'' zwróci \textbf{False}, nie wykona się więc procedura \textit{zamień}. Po \m{(m+1)}-wszym przejściu pętli element pozostanie więc na swoim miejscu (pozycji \m{m+2}), a to chcieliśmy udowodnić.
+    \end{itemize}
+    
+    W obu przypadkach, po \m{(m+1)}-wszym przejściu pętli, maksymalny element ciągu \m{(a_1,a_2,\dots,a_{m+2})} będzie na pozycji \m{m+2}, więc \m{m+1 \in X}. 
+\end{itemize}
+
+Na mocy zasady indukcji, \m{X = \mathbb{N}}, co kończy dowód twierdzenia.
+\end{proof}
+
+\begin{definition}
+\m{k}-tym maksymalnym elementem ciągu \m{A} nazywać będziemy \m{k}-ty element od końca w posortowanym rosnąco ciągu \m{A}. 
+
+Przykładowo, \m{3}-cim maksymalnym elementem ciągu \m{(1,6,2,9,8,1,4,8)} jest element \m{8} bo \m{8} jest \m{3}-cim od końca elementem ciągu \m{(1,1,2,4,6,8,8,9)}.
+\end{definition}
+
+\begin{theo}[Niezmiennik pętli zewnętrznej]
+\label{theo:invariant_outer_loop}
+Dla dowolnej liczby naturalnej \m{m} i dowolnego ciągu liczb naturalnych \m{A} długości \m{n}, po \m{m}-tym przejściu pętli zewnętrznej, dla \textbf{każdego} \m{k < m}, \m{a_{n-k}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_n)}.
+
+Lub, opisując to innymi słowami, po \m{m}-tym przejściu pętli zewnętrznej, ciąg \m{(a_{n-m+1}, a_{n-m+2}, \dots, a_{n})} jest posortowany rosnąco i zawiera \m{m} kolejnych maksymalnych elementów ciągu \m{(a_1,a_2,\dots,a_n)}.
+\end{theo}
+
+\begin{proof}
+Udowodnimy to ponownie używając \textbf{indukcji}.
+
+Niech własność \m{\psi(m)} mówi, że dla dowolnego ciągu liczb naturalnych \m{A} długości \m{n}, po \m{m}-tym przejściu pętli zewnętrznej, dla każdego \m{k < m}, \m{a_{n-k}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_n)}.
+
+Zdefiniujmy \m{X} jako
+
+\[
+    X = \set{m \in \mathbb{N}}{\psi(m)}
+\]
+
+Pokażemy, że \m{X = \mathbb{N}}. Użyjemy do tego indukcji z wersji \ref{theo:induction-v1}.
+
+\begin{itemize}
+    \item \textbf{Podstawa indukcji:}
+    
+    Weźmy dowolną liczbę \m{n} i dowolny ciąg liczb naturalnych \m{A} długości \m{n}. W zerowym przejściu pętli zewnętrznej (tzn. przed pierwszym przejściem) nie mamy żadnych \m{k < m}, więc \m{0 \in X}.
+    
+    \item \textbf{Krok indukcyjny:}
+    
+    Weźmy dowolną liczbę naturalną \m{m} i załóżmy, że \m{m \in X}, czyli, że dla dowolnej liczby naturalnej \m{n} i dowolnego ciągu liczb naturalnych \m{A} długości \m{n}, po \m{m}-tym przejściu pętli zewnętrznej, dla każdego \m{k < m}, \m{a_{n-k}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_n)}.
+    
+    Musimy pokazać, że \m{m+1 \in X}, czyli, że dla dowolnej liczby \m{n} i dowolnego ciągu liczb naturalnych \m{A} długości \m{n}, po \m{m+1}-wszym przejściu pętli zewnętrznej, dla każdego \m{k < m + 1}, \m{a_{n-k}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_n)}.
+    
+    Weźmy więc dowolną liczbę naturalną \m{n} i dowolny ciąg liczb naturalnych \m{A} długości \m{n}.
+    
+    Na mocy założenia indukcyjnego, dla tej liczby \m{n} i tego ciągu \m{A}, po \m{m}-tym przejściu pętli zewnętrznej, dla każdego \m{k < m}, \m{a_{n-k}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{(a_1,a_2,\dots,a_n)}.
+    
+    Zostało więc pokazać, że po \m{m+1}-wszym przejściu pętli zewnętrznej, pozycje elementów \m{a_{n-m+1},a_{n-m+2},\dots,a_{n}} nie zmienią się, a element \m{a_{n-m}} stanie się \m{m+1}-wszym maksymalnym elementem ciągu \m{A} (twierdzenie dla \m{k = m}).
+    
+    Wiemy, że w \m{m+1}-wszym przejściu pętli zewnętrznej, parametr \m{i} będzie wynosić \m{n-m}. Skoro tak, to parametr \m{j} może maksymalnie wynieść \m{n-m-1}. Oznacza to, że pętla wewnętrzna nie będzie w stanie zmienić pozycji elementów \m{a_{n-m+1},a_{n-m+2},\dots,a_{n}}.
+    
+    Zauważmy, że \m{m+1}-wszy największy element ciągu \m{A} znajduje się gdzieś na pozycjach \m{1,2,\dots,n-m}. Dodatkowo, ten element jest elementem maksymalnym ciągu \m{(a_1,a_2,\dots,a_{n-m})}.
+    
+    Możemy teraz użyć twierdzenia \ref{theo:invariant_inner_loop} żeby stwierdzić, że po \m{(n-m-1)}-wszym przejściu pętli wewnętrznej, na miejscu \m{(n-m)}-tym znajdzie się maksymalny element ciągu \m{(a_1,a_2,\dots,a_{n-m})}.
+    
+    Oznacza to, że po \m{(m+1)}-wszym przejściu pętli zewnętrznej, element \m{a_{n-m}} jest \m{(m+1)}-wszym maksymalnym elementem ciągu \m{A}.
+    
+   W takim razie \m{m+1 \in X}.
+\end{itemize}
+
+Na mocy zasady indukcji, \m{X = \mathbb{N}}, co kończy dowód twierdzenia.
+\end{proof}
+
+Mając te twierdzenia, możemy w końcu udowodnić prawdziwość sortowania bąbelkowego.
+
+\begin{theo}[Poprawność sortowania bąbelkowego]
+Przedstawiony algorytm sortowania bąbelkowego jest poprawny.
+\end{theo}
+
+\begin{proof}
+Z twierdzenia \ref{theo:bubble_stop} wiemy, że dla poprawnych danych algorytm sortowania bąbelkowego się zatrzymuje. Musimy tylko pokazać, że dla dowolnych poprawnych danych, zwróci poprawny wynik.
+
+Weźmy dowolną liczbę naturalną \m{n} i dowolny ciąg liczb naturalnych \m{A} długości \m{n}. Pokażemy, że po wykonaniu algorytmu sortowania bąbelkowego, ciąg \m{A} będzie posortowany.
+
+Z twierdzenia \ref{theo:invariant_outer_loop} wiemy, że dla dowolnych liczb naturalnych \m{n,m} i dla dowolnego ciągu \m{A} długości \m{n}, po \m{m}-tym przejściu pętli zewnętrznej, element \m{a_{n-k}}, dla \m{k \in \{ 0,1,\dots,(m-1) \}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{A}.
+
+Wiemy też, że dla danego \m{n} i danego ciągu \m{A} długości \m{n}, pętla zewnętrzna wykona się \m{n} razy. 
+
+Na mocy twierdzenia \ref{theo:invariant_outer_loop}, po \m{n}-tym przejściu pętli zewnętrznej, element \m{a_{n-k}}, dla \m{k \in \{ 0,1,\dots,(n-1) \}} jest \m{(k+1)}-wszym maksymalnym elementem ciągu \m{A}. 
+
+To oznacza, że ciąg jest posortowany rosnąco (maksymalny element znajduje się na pozycji \m{n}, drugi maksymalny na pozycji \m{n-1}, i tak dalej, aż w końcu \m{n}-ty maksymalny znajdzie się na pozycji \m{n-(n-1) = 1}).
+\end{proof}
+
+\end{example}
+
+\subsection{Relacyjny rachunek dziedzin a język zapytań SQL}
+
+W tym rozdziale zaprezentujemy jak poznane w rozdziale \ref{chapter:relation} zapytania w relacyjnym rachunku dziedzin mogą zostać przepisane na równoważne im zapytania w \m{SQL}. Użyjemy do tego pierwszego punktu z przykładu \ref{example:juices-and-bars} znajdującego się w rozdziale \ref{chapter:relation} 
+
+\subsubsection{Założenia wstępne}
+Zamieszczony poniżej przykład ma jedynie zilustrować jak zapytania w relacyjnym rachunku dziedzin mogą przełożyć się na zapytania w języku \textbf{SQL}. Nie będziemy więc zwracać uwagi na efektywność zapytań, nie będziemy też używać kluczy czy operatorów typu \textit{union}.
+
+\subsubsection{Baza danych}
+
+Dla zilustrowania przykładu, stworzymy nową bazę \textbf{mysql}\cite{mysql}, zawierającą trzy główne tabele: \textbf{,,osoba''}, \textbf{,,sok''} i \textbf{,,bar''}, każda z nich zawierająca dwie kolumny \textit{(id, nazwa)}. W celu zaprezentowania relacji pomiędzy zbiorami osób, soków i barów stworzymy trzy kolejne tabele: \textbf{,,bywa''} z kolumnami \textit{(osobaId, barId)}, \textbf{,,lubi''} z kolumnami \textit{(osobaId, sokId)} i \textbf{,,podawany''} z kolumnami \textit{(sokId, barId)}.
+
+
+\begin{table}
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Osoba} \\
+        \hline
+        id & nazwa \\
+        \hline
+        1 & Balbina \\
+        2 & Oskar \\
+        3 & Danuta \\
+        4 & Eryk \\
+        5 & Ernest \\
+        6 & Allan \\
+        7 & Klara \\
+        8 & Anatolia \\
+        9 & Bartek \\
+        10 & Katarzyna \\
+        \hline
+    \end{tabular}
+    \hfill
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Sok} \\
+        \hline
+        id & nazwa \\
+        \hline
+        1 & Malinowy \\
+        2 & Gruszkowy \\
+        3 & Bananowy \\
+        4 & Porzeczkowy \\
+        5 & Truskawkowy \\
+        \hline
+    \end{tabular}
+    \hfill
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Bar} \\
+        \hline
+        id & nazwa \\
+        \hline
+        1 & Jagoda \\
+        2 & Alibi \\
+        3 & Saloon \\
+        \hline
+    \end{tabular}
+    \caption{Zbiory}
+\end{table}
+
+\begin{table}
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Bywa} \\
+        \hline
+        osobaId & barId \\
+        \hline
+            1 & 1 \\
+            1 & 2 \\
+            2 & 1 \\
+            3 & 2 \\
+            3 & 3 \\
+            4 & 1 \\
+            5 & 1 \\
+            6 & 1 \\
+            6 & 3 \\
+            7 & 3 \\
+            9 & 1 \\
+            9 & 2 \\
+            10 & 2 \\
+        \hline
+    \end{tabular}
+    \hfill
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Lubi} \\
+        \hline
+        osobaId & sokId \\
+        \hline
+        1 & 2 \\
+        2 & 1 \\
+        2 & 5 \\
+        3 & 3 \\
+        3 & 4 \\
+        4 & 4 \\
+        5 & 1 \\
+        5 & 5 \\
+        6 & 3 \\
+        7 & 2 \\
+        7 & 5 \\
+        8 & 1 \\
+        9 & 3 \\
+        10 & 1 \\
+        10 & 3 \\
+        \hline
+    \end{tabular}
+    \hfill
+    \begin{tabular}[t]{|c|c|}
+        \hline
+        \multicolumn{2}{|c|}{Podawany} \\
+        \hline
+        sokId & barId \\
+        \hline
+        1 & 1 \\
+        3 & 1 \\
+        4 & 1 \\
+        1 & 2 \\
+        \hline
+    \end{tabular}
+    \caption{Relacje}
+\end{table}
+\clearpage
+
+\subsection{Przykład}
+
+\begin{example}
+    Zapisz w języku \textbf{SQL} poniższe zapytanie:
+
+    Wykaz osób które nie bywają w żadnym barze, w którym podają sok ,,Malinowy''.
+    
+    Przypomnijmy, że nasze zapytanie w relacyjnym rachunku dziedzin wyglądało następująco:
+    
+     \[
+        \set{x}{x \in O \wedge \forall{b \in B} (Bywa(x,b) \Rightarrow \neg Podawany(''Malinowy'',b))}
+    \]
+    
+    W języku \textbf{SQL} nie ma implikacji, nie ma też kwantyfikatora ogólnego. Mamy za to operator \textit{exists}, więc na początek przeróbmy lekko nasze zapytanie:
+    
+     \[
+        \set{x}{x \in O \wedge \neg (\exists{b \in B} (Bywa(x,b) \wedge Podawany(''Malinowy'',b)))}
+    \]
+    
+   Zacznijmy zapisywać zapytanie od środka. Język \textbf{SQL} nie posiada symboli relacyjnych, musimy więc znaleźć inny sposób na zapisanie, że \textit{x} bywa w barze \textit{b}. Możemy to zrobić mówiąc, że w tabeli \textit{Bywa} istnieje para \textit{(osobaId,barId)}, gdzie \textit{osobaId} to \textit{id} osoby \textit{x}, a \textit{barId} to \textit{id} baru \textit{b}.
+   
+   Innymi słowy, chcielibyśmy wybrać z bazy wszystkie rekordy, które spełniają nasze zapytanie, a potem poprzedzić to słowem kluczowym \textit{exists}, żeby sprawdzić, czy takie rekordy istnieją:
+   
+    \begin{lstlisting}[language=SQL, breaklines=true]
+    exists (
+        select * from bywa where 
+        bywa.barId = b.id and 
+        bywa.osobaId = x.id 
+    )
+    \end{lstlisting}
+    
+    Podobnie, fakt, że w barze \textit{b} podawany jest sok \textit{Malinowy} możemy zapisać jako:
+    
+    \begin{lstlisting}[language=SQL, breaklines=true]
+    exists (
+        select * from podawany, sok where 
+        podawany.barId = b.id and 
+        podawany.sokId = sok.id and 
+        sok.nazwa = 'Malinowy'
+    )
+    \end{lstlisting}
+    
+    Żeby sprawdzić, czy istnieje bar, w którym \textit{x} bywa i w którym podawany jest sok \textit{Malinowy}, możemy, podobnie jak powyżej, napisać zapytanie które wybiera wszystkie takie bary, a następnie poprzedzić je operatorem \textit{exists}: 
+    
+    \begin{lstlisting}[language=SQL, breaklines=true]
+    exists (
+        select * from bar b where 
+        exists (
+            select * from bywa where 
+            bywa.barId = b.id and 
+            bywa.osobaId = x.id 
+        ) and exists (
+            select * from podawany, sok where 
+            podawany.barId = b.id and 
+            podawany.sokId = sok.id and 
+            sok.nazwa = 'Malinowy'
+        )
+    )
+    \end{lstlisting}
+    
+    Oczywiście, w zapytaniu mamy negację, jednak łatwo ją zapisać używając słowa kluczowego \textit{not}:
+    
+   \begin{lstlisting}[language=SQL, breaklines=true]
+    not (exists (
+        select * from bar b where 
+            exists (
+                select * from bywa where 
+                    bywa.barId = b.id and 
+                    bywa.osobaId = x.id 
+            ) and exists (
+                select * from podawany, sok where 
+                    podawany.barId = b.id and 
+                    podawany.sokId = sok.id and 
+                    sok.nazwa = 'Malinowy'
+            )
+    ))
+    \end{lstlisting}
+    
+    A ostatecznie interesować nas będą osoby \textit{x}, dla których powyższe zapytanie będzie prawdziwe, dostajemy więc:
+    \clearpage
+    
+   \begin{lstlisting}[language=SQL, breaklines=true]
+   select * from osoba x where
+        not (exists (
+            select * from bar b where 
+                exists (
+                    select * from bywa where 
+                        bywa.barId = b.id and 
+                        bywa.osobaId = x.id 
+                ) and exists (
+                    select * from podawany, sok where 
+                        podawany.barId = b.id and 
+                        podawany.sokId = sok.id and 
+                        sok.nazwa = 'Malinowy'
+                )
+        ))
+    \end{lstlisting}
+    
+    Wynikiem naszego zapytania jest
+    \begin{table}[H]
+        \centering
+        \begin{tabular}[t]{|c|c|}
+            \hline
+            id & nazwa \\
+            \hline
+            7 & Klara \\
+            8 & Anatolia \\
+            \hline
+        \end{tabular}
+    \end{table}
+        
+    Łatwo sprawdzić, że \textit{Klara} i \textit{Antonina} są rzeczywiście jedynymi osobami spełniającymi zapytanie. \textit{Saloon} jest jedynym barem w którym nie podają soku \textit{Malinowy}, a wszystkie inne osoby chodzą do przynajmniej jednego z dwóch pozostałych barów.
+\end{example}
+
+Pozostałe przykłady opisane w rozdziale \ref{chapter:relation} mogą zostać przepisane analogicznie do powyższego.
+
+\subsection{Wnioski}
+Powyższy przykład ilustruje, że relacyjny rachunek dziedzin jest (nieprzypadkowo) dość mocno związany z językiem \textbf{SQL}, stosowanym w wielu popularnych rodzajach baz danych. Choć dokładne opisanie zależności pomiędzy nimi wykracza poza zakres tej pracy, to warto zaznaczyć, że dobre zrozumienie relacyjnego rachunku dziedzin może znacznie ułatwić prowadzenie rozumowań na temat zapytań w języku \textbf{SQL}, na przykład analizę statyczną zapytań czy tworzenie systemów integracji informacji i wymiany danych.

@@ -1,0 +1,442 @@
+\section{Zbiór induktywny}
+
+Zanim zaczniemy mówić o indukcji oraz o tym, do czego można jej użyć, pomówmy o \textbf{liczbach naturalnych}. Nietrudno jest zauważyć, że zbiór \m{\mathbb{N}} wszystkich liczb naturalnych jest zbiorem posiadającym poniższe własności:
+
+\begin{itemize}
+    \item \m{0 \in \mathbb{N}}; czyli, że \m{0} jest liczbą naturalną
+    \item dla dowolnej liczby \m{m}, jeśli \m{n \in \mathbb{N}}, to \m{n+1 \in \mathbb{N}}; czyli, że jeśli \m{n} jest liczbą naturalną, to \m{n+1} także jest liczbą naturalną
+\end{itemize}
+
+Zbiór liczb naturalnych nie jest jednak jedynym zbiorem, który je posiada. Innym takim zbiorem może być na przykład zbiór liczb rzeczywistych \m{\mathbb{R}}, albo zbiór liczb wymiernych \m{\mathbb{Q}}. Dowolny zbiór liczb, który spełnia te własności, nazywać będziemy zbiorem \textbf{induktywnym}. Formalnie:
+
+\begin{definition}[zbiór induktywny]
+Zbiór \m{X} jest zbiorem \textbf{induktywnym}, jeśli spełnia warunki:
+\begin{itemize}
+    \item \m{0 \in X}, oraz
+    \item jeśli \m{n \in X}, to \m{n+1 \in X} dla dowolnego \m{n}.
+\end{itemize}
+\label{definition:inductive}
+\end{definition}
+
+Zbiór liczb naturalnych \m{\mathbb{N}} jest więc zbiorem induktywnym. Jest też równocześnie dość szczególnym zbiorem induktywnym: wszystkie liczby, które uznajemy za naturalne, możemy uzyskać stosując powyższe reguły (to znaczy, każda liczba naturalna jest albo zerem, albo jest otrzymana poprzez dodanie jedynki do jakiejś liczby naturalnej). W zbiorze liczb naturalnych nie ma więc miejsca na liczby \m{\frac{1}{2}}, \m{-1} czy \m{\sqrt{2}}.
+
+Można więc powiedzieć, że zbiór liczb naturalnych \m{\mathbb{N}} jest \textbf{najmniejszym} zbiorem induktywnym: nie posiada żadnych nadmiarowych elementów. Prawdą jest też stwierdzenie, że każdy zbiór induktywny \textbf{zawiera w sobie} zbiór liczb naturalnych (w dowolnym zbiorze induktywnym są wszystkie liczby naturalne).
+
+
+\section{Zasada indukcji}
+
+Spostrzeżenie, że zbiór \m{\mathbb{N}} jest \textbf{najmniejszym} zbiorem induktywnym,  to nic innego jak \textbf{zasada indukcji}. W innych słowach: jeśli zbiór \m{X} jest induktywnym podzbiorem zbioru liczb naturalnych (to znaczy, wszystkie elementy zbioru \m{X} są liczbami naturalnymi), to \m{X = \mathbb{N}}. Formalnie:
+
+\begin{theo}[zasada indukcji, wersja 1]
+Niech \m{X} będzie takim podzbiorem liczb naturalnych \m{\mathbb{N}}, że:
+\begin{itemize}
+    \item \m{0 \in X}, oraz
+    \item dla dowolnego \m{n}, jeśli \m{n \in X} to \m{n + 1 \in X}
+\end{itemize}
+Wtedy \m{X = \mathbb{N}}
+\label{theo:induction-v1}
+\end{theo}
+
+Powyższe twierdzenie pozwala nam udowadniać, że wszystkie liczby naturalne posiadają jakąś (określoną przez nas) własność. Możemy na przykład pokazać, że dla dowolnej liczby naturalnej \m{n}, liczba \m{2n} również jest naturalna, co więcej, jest parzysta. Możemy też pokazać coś bardziej skomplikowanego, na przykład, że suma \m{n} pierwszych liczb naturalnych jest równa \m{\frac{n(n+1)}{2}}.
+
+Struktura takiego dowodu jest zazwyczaj taka sama:
+\begin{enumerate}
+    \item Zdefiniowanie zbioru \m{X}, jako zbioru liczb naturalnych \m{n} dla których spełniona jest dana własność
+    \item Pokazanie, że zbiór \m{X} jest induktywny, to znaczy:
+    \begin{itemize}
+        \item \m{0 \in X}, czyli, że~\m{x} posiada daną własność; często ten etap nazywa się \textbf{podstawą indukcji}
+        \item pokazanie, że jeśli \m{n \in X} to \m{n + 1 \in X}, czyli udowodnienie, że \m{n+1} posiada daną własność przy założeniu, że \m{n} ją posiada; ten etap często nazywa się \textbf{krokiem indukcyjnym}, a założenie, że \m{n \in X} - \textbf{założeniem indukcyjnym}
+    \end{itemize}
+    \item powołanie się na zasadę indukcji by stwierdzić, że \m{X = \mathbb{N}}, czyli każda liczba naturalna należy do zbioru \m{X}, spełnia więc daną własność.
+\end{enumerate}
+
+Taki dowód można rozumieć też jako algorytm, dzięki któremu moglibyśmy pokazać, że dowolne \m{n} posiada daną własność. Posiada ją bowiem \m{0} (z \textbf{podstawy indukcji}), a także \m{0+1=1} (z \textbf{kroku indukcyjnego}: skoro \m{0} to i \m{0+1}), a także \m{1+1=2}, \m{2+1=3}, \m{\ldots}, \m{n-1 + 1 = n}. 
+
+\begin{example}
+Pokażemy, że dla dowolnej liczby naturalnej \m{n}, liczba \m{2n} jest liczbą naturalną. 
+
+\begin{proof} Dla dowolnej \m{n \in \mathbb{N}}, \m{2n \in \mathbb{N}}.
+\begin{enumerate}
+    \item Niech zbiór \m{X} będzie zbiorem liczb naturalnych \m{n} takich, że \m{2n} jest liczbą naturalną. Formalnie:
+    
+        \[ 
+            X = \set{n \in \mathbb{N}}{2n \text{ jest liczbą naturalną}} 
+        \]
+    
+    Zauważmy, że \m{X} jest podzbiorem zbioru liczb naturalnych.
+    
+    \item Pokażemy, że zbiór \m{X} jest induktywny. 
+        
+        \begin{itemize}
+            \item \textbf{Podstawa indukcji:}
+            
+                Zauważmy, że \m{2 \cdot 0 = 0} jest liczbą naturalną, więc \m{0 \in X} (to znaczy, że \m{0} spełnia własność).
+            
+            \item \textbf{Krok indukcyjny:}
+            
+                Weźmy dowolne \m{n} i załóżmy, że \m{n \in X} (\textbf{założenie indukcyjne}). Pokażemy, że \m{n+1 \in X} (to znaczy, że jeśli \m{n} posiada jakąś własność, to posiada ją też \m{n+1}).
+                
+                Skoro \m{n \in X}, to \m{2n} jest liczbą naturalną. Chcemy pokazać, że \m{n+1 \in X}, czyli, że \m{2(n+1)} jest liczbą naturalną. Spróbujmy znaleźć powiązanie pomiędzy \m{2(n+1)} a \m{2n}:
+                
+                \[
+                    2(n+1) = 2n + 2 = 2n + 1 + 1
+                \]
+                
+                Z założenia indukcyjnego wiemy, że liczba \m{2n} jest liczbą naturalną. Wiemy też, że \m{\mathbb{N}} jest zbiorem induktywnym, więc dodając \m{1} do liczby naturalnej, otrzymamy liczbę naturalną. Skoro tak, to:
+                
+                \begin{itemize}
+                    \item \m{2n + 1 \in \mathbb{N}}, bo \m{2n \in \mathbb{N}} (z założenia indukcyjnego).
+                    \item \m{2n+2 \in \mathbb{N}}, bo \m{2n+2 = (2n+1) + 1}, a \m{2n+1} jest liczbą naturalną (z poprzedniego punktu).
+                \end{itemize}
+                
+                W takim razie \m{2(n+1) \in \mathbb{N}}, czyli \m{n+1 \in X}.
+        \end{itemize}
+    
+    \item Zatem, na mocy twierdzenia \ref{theo:induction-v1}, zbiór \m{X = \mathbb{N}}, czyli dla każdej liczby naturalnej \m{n}, \m{2n} jest liczbą naturalną. 
+\end{enumerate}
+\end{proof}
+\end{example}
+
+\section{Zmiana podstawy indukcji}
+
+Twierdzenie \ref{theo:induction-v1} nie jest jedynym sposobem, na zapisanie zasady indukcji. W zależności od naszych potrzeb, możemy definiować własne zasady indukcji, upewniając się oczywiście, że są one poprawne. Dla przykładu, jeśli chcielibyśmy pokazać, że jakaś własność przysługuje wszystkim liczbom naturalnym większym od \m{0} (np. "dla każdej liczby naturalnej większej od \m{0}, \m{2^n} jest liczbą parzystą), możemy zmienić podstawę indukcji, by zaczynała się od \m{1} zamiast od \m{0}:
+
+\begin{theo}[zasada indukcji, wersja 2]
+Niech \m{X} będzie podzbiorem zbioru liczb naturalnych, takim, że 
+\begin{itemize}
+    \item \m{1 \in X}, oraz
+    \item dla każdego \m{n}, jeśli \m{n \in X} to \m{n+1 \in X}
+\end{itemize}
+Wtedy dla każdej liczby \m{n \in \mathbb{N}_{\geq 1}} (liczby naturalnej \m{n \geq 1}), \m{n \in X}
+\label{theo:induction-v2}
+\end{theo}
+
+Intuicyjnie, powyższa zasada indukcji działa, ponieważ podaje nam algorytm pokazania, że każda liczba większa od \m{0} posiada daną własność: Posiada ją \m{1}, a także \m{1+1=2}, \m{1+2=3}, \m{\ldots}
+
+Nie jest to jednak dowód formalny; podaje nam tylko pewną intuicję. Formalny dowód można na przykład przeprowadzić \textbf{nie wprost}, biorąc dowolny zbiór \m{X} spełniający warunki z twierdzenia \ref{theo:induction-v2} i zakładając, że nie jest on zbiorem \textbf{wszystkich} liczb naturalnych większych bądź równych \m{1}.
+
+\begin{proof} Zasada indukcji z twierdzenia \ref{theo:induction-v2} jest poprawna.
+
+Weźmy dowolny zbiór \m{X} spełniający warunki twierdzenia \ref{theo:induction-v2}.
+
+Załóżmy nie wprost, że \m{X} nie jest zbiorem liczb naturalnych większych bądź równych \m{1}. Skoro \m{X} zawiera tylko liczby naturalne (bo z założenia jest podzbiorem \m{\mathbb{N}}), to musi istnieć \m{n \in \mathbb{N}_{\geq 1}}, takie, że \m{n \not\in X}.
+
+Weźmy więc \textbf{najmniejszą} liczbę \m{n}, taką, że \m{n \in \mathbb{N}_{\geq 1}}, ale \m{n \not\in X}.
+
+Rozpatrzmy przypadki:
+
+\begin{itemize}
+    \item \m{n = 1}. Z konstrukcji zbioru \m{X} wiemy, że \m{1 \in X} (pierwszy punkt z twierdzenia \ref{theo:induction-v2}). Otrzymujemy więc sprzeczność z założeniem, że \m{n \not\in X}.
+    
+    \item \m{n \geq 2}. Skoro \m{n} jest \textbf{najmniejszą} liczbą naturalną większą bądź równą \m{1} nie należącą do \m{X}, to oznacza, że \m{(n-1) \in X}.
+    
+    Wiemy, że \m{X} spełnia warunek drugi z twierdzenia \ref{theo:induction-v2}. Oznacza to, że dla dowolnej liczby naturalnej należącej do \m{X}, liczba o jeden większa również należy do \m{X}. Wiemy też, że \m{(n-1) \in X}. Oznacza to, że \m{(n-1 + 1) \in X}, czyli, że \m{n \in X}. Otrzymujemy więc sprzeczność z założeniem, że \m{n \in X}.
+\end{itemize}
+
+Oznacza to, że dla wszystkich liczb naturalnych \m{n \in \mathbb{N}_{\geq 1}}, \m{n \in X}, a to chcieliśmy pokazać.
+\end{proof}
+
+Zasadę indukcji z twierdzenia \ref{theo:induction-v2} można w dość naturalny sposób zastąpić taką, dzięki której można pokazać, że jakaś własność przysługuje liczbom naturalnym większym od pewnego \m{a}:
+
+\begin{theo}[zasada indukcji, wersja 3]
+Niech \m{a \in \mathbb{N}}, a \m{X} będzie podzbiorem zbioru liczb naturalnych, takim, że 
+\begin{itemize}
+    \item \m{a \in X}, oraz
+    \item dla każdego \m{n}, jeśli \m{n \in X} to \m{n+1 \in X}
+\end{itemize}
+Wtedy dla każdej liczby naturalnej \m{n \geq a}, \m{n \in X}
+\label{theo:induction-v3}
+\end{theo}
+
+\begin{ex}
+Pokaż, że zasada indukcji z twierdzenia \ref{theo:induction-v3} jest poprawna.
+\end{ex}
+
+\section{Wzmacnianie założenia indukcyjnego}
+
+Zdarzają się sytuacje, kiedy założenie, że poprzednia liczba spełnia daną własność jest niewystarczające. Tworząc zasadę indukcji, która zakłada coś o kilku poprzednich elementach, należy uważać. Weźmy dla przykładu zbiór \m{X} posiadający następujące własności:
+
+\begin{itemize}
+    \item \m{0 \in X}
+    \item jeśli \m{n \in X} oraz \m{n+1 \in X}, to \m{n+2 \in X} 
+\end{itemize}
+
+Łatwo jest sprawdzić, że zbiór \m{\mathbb{N}} spełnia powyższe własności. Czy jest jednak \textbf{najmniejszym} zbiorem który je spełnia? Spójrzmy, jak budowany jest ten zbiór. Oczywiście, \m{0} do niego należy. Czy z faktu, że \m{0} do niego należy wynika, że \m{1} też powinno? Odwróćmy pytanie: \textbf{kiedy \m{1} musi należeć do \m{X}?} Z punktu drugiego wynika, że \m{1 \in X} jeśli \m{0 \in X} oraz \m{-1 \in X}. Ale \m{-1} nie musi należeć do \m{X}. Co z \m{2}? Skoro \m{1} nie musi należeć do \m{X}, to przeprowadzając podobne rozumowanie, możemy dojść do wniosku, że \m{2} też nie musi być jego elementem.
+
+Zbiory \m{X = \{\ 0\ \}}, \m{X = \{\ 0,\ 2\ \}}, czy zbiór liczb parzystych są tylko niektórymi przykładami zbiorów, które spełniają powyższe warunki. Zbiór liczb naturalnych nie jest więc \textbf{najmniejszym} takim zbiorem. Co ze zbiorem \m{X = \{\ 0,\ 1\ \}}? Skoro zarówno \m{0} jak i \m{1} należą do \m{X}, to \m{2} też musi do niego należeć. Zbiór \m{X} nie spełnia więc warunków. Co ze zbiorem \m{X = \{\ 0,\ 1,\ 2\ \}}? Skoro zarówno \m{1} jak i \m{2} należą do \m{X}, to \m{3} też powinno, więc zbiór \m{X} znów nie spełnia warunków. Podobnie zbiór \m{X = \{\ 0,\ 1,\ 2,\ 3\ \}}, \m{X = \{\ 0,\ 1,\ 2,\ 3,\ 4\ \}} i tak dalej. Wygląda na to, że jeśli zbiór zawiera \m{0} i \m{1}, to żeby spełniał warunki, musiałby zawierać już wszystkie liczby naturalne.
+
+\begin{theo}[zasada indukcji, wersja 4]
+Niech \m{X} będzie podzbiorem zbioru liczb naturalnych, takim, że 
+\begin{itemize}
+    \item \m{0 \in X} i \m{1 \in X} oraz
+    \item dla każdego \m{n}, jeśli \m{n \in X} oraz \m{n+1 \in X} to \m{n+2 \in X}
+\end{itemize}
+Wtedy \m{X = \mathbb{N}}
+\label{theo:induction-v4}
+\end{theo}
+
+Dowód poprawności tej zasady indukcji można przeprowadzić podobnie do dowodu poprawności zasady indukcji z twierdzenia \ref{theo:induction-v2}.
+
+W tej zasadzie indukcji mamy dwie \textbf{podstawy indukcji}. Podobnie, pisząc zasadę indukcji, która w \textbf{kroku indukcyjnym} mówi coś o czterech poprzednich elementach, należy rozważyć cztery \textbf{podstawy indukcji}.
+
+\begin{ex}
+Czy \m{\mathbb{N}} jest najmniejszym zbiorem \m{X}, który spełnia poniższe własności? 
+
+\begin{itemize}
+    \item \m{0 \in X}
+    \item jeśli \m{n \in X} to \m{n + 2 \in X}
+\end{itemize}
+
+Jeśli nie, to czy potrafisz ,,poprawić'' własności, by tak było? Czy potrafisz napisać i uzasadnić zasadę indukcji, której podstawą będzie zbiór \m{X}?
+\end{ex}
+
+\begin{example}
+Dany jest ciąg, spełniający następujące własności: \m{a_0 = 0}, \m{a_1 = 1}, \m{a_n = a_{n-2} + 2} dla \m{n \geq 2}. Pokażemy, że \m{a_n = n} dla każdej liczby naturalnej \m{n}.
+
+\begin{enumerate}
+    \item Niech \m{X} będzie takim podzbiorem zbioru liczb naturalnych, że
+    
+    \[
+        X = \set{n \in \mathbb{N}}{a_n = n}
+    \]
+    
+    Pokażemy, że \m{X = \mathbb{N}}
+    \item Użyjemy zasady indukcji z twierdzenia \ref{theo:induction-v4}
+    
+    \item Pokażmy, że:
+    \begin{itemize}
+        \item \textbf{Podstawa indukcji:}
+        \begin{itemize}
+            \item \m{0 \in X}, ponieważ \m{a_0 = 0}, z definicji ciągu
+            \item \m{1 \in X}, ponieważ \m{a_1 = 1}, z definicji ciągu
+        \end{itemize}
+        
+        \item \textbf{Krok indukcyjny:}
+        
+        Weźmy dowolne \m{n} i załóżmy, że \m{n \in X} oraz \m{n+1 \in X} (założenie indukcyjne). Pokażemy, że \m{n+2 \in X} to znaczy, że \m{a_{n+2} = n+2}.
+        
+        Skoro \m{n \in X} to, z definicji zbioru \m{X}, \m{n} jest liczbą naturalną, czyli także \m{n \geq 0}. Skoro tak, to \m{n+2 \geq 2}, więc \m{a_{n+2} = a_n + 2} (z definicji ciągu \m{a_n}). 
+        Z założenia indukcyjnego wiemy, że \m{a_n = n}. Stąd:
+        
+        \[
+            a_{n+2} = a_n + 2 = n + 2
+        \]
+        
+        Czyli, że \m{n+2 \in X}.
+    \end{itemize}
+\end{enumerate}
+Na mocy zasady indukcji z twierdzenia \ref{theo:induction-v4}, \m{X = \mathbb{N}}, czyli dla każdej liczby naturalnej \m{n}, \m{a_n = n}.
+\end{example}
+
+Bazując na twierdzeniu \ref{theo:induction-v4} możemy skonstruować indukcję, która założy coś o \m{a} poprzednich elementach, dla dowolnego \m{a \geq 1}. Czasem jednak i to nie jest wystarczające. W pewnych sytuacjach chcielibyśmy założyć, że \textbf{wszystkie} elementy mniejsze bądź równe \m{n} są elementami zbioru \m{X}, żeby pokazać, że \m{n+1} też jest elementem \m{X}. 
+
+\begin{theo}[zasada indukcji, wersja 5]
+Niech \m{a \in \mathbb{N}}, a \m{X} będzie podzbiorem zbioru liczb naturalnych takim, że
+\begin{itemize}
+    \item \m{a \in X}, oraz
+    \item dla wszystkich liczb naturalnych \m{n \geq a}, jeśli \m{\forall{a \leq i \leq n}\ (i \in X)} (dla każdej liczby \m{i}, która jest większa bądź równa \m{a} ale mniejsza bądź równa \m{n}, \m{i \in X}), to \m{(n+1) \in X}
+\end{itemize}
+Wtedy dla każdej liczby naturalnej \m{n \geq a}, \m{n \in X}
+\label{theo:induction-v5}
+\end{theo}
+
+Dowód prawdziwości tej zasady indukcji można przeprowadzić podobnie do poprzednich.
+
+Rzeczą na którą szczególnie trzeba zwrócić uwagę podczas korzystania z tego twierdzenia, jest założenie indukcyjne, a dokładniej przedział, w którym założenie to zachodzi. Spójrzmy na przykładowy dowód:
+
+\begin{example}
+Pokażę, że dla każdej liczby naturalnej \m{n}, \m{n} jest parzyste.
+
+\begin{enumerate}
+    \item Niech \m{X} będzie takim podzbiorem zbioru liczb naturalnych, że
+    
+    \[
+        X = \set{n \in \mathbb{N}}{n \text{ jest parzyste}}
+    \]
+    
+    Pokażemy, że dla każdego \m{n \in \mathbb{N}}, \m{n \in X}
+    \item Użyjemy zasady indukcji z twierdzenia \ref{theo:induction-v5}
+    
+    \item Pokażmy, że:
+    \begin{itemize}
+        \item \textbf{Podstawa indukcji:}
+        Oczywiście, \m{0 \in X}, ponieważ \m{0} jest liczbą parzystą
+        
+        \item \textbf{Krok indukcyjny:}
+        Weźmy dowolne \m{n} i załóżmy, że dla wszystkich liczb naturalnych \m{i} takich, że \m{i \geq 0} oraz \m{i \leq n}, \m{i \in X}. Pokażemy, że \m{n+1 \in X}.
+        
+        Wiemy z założenia indukcyjnego, że \m{n-1 \in X}, więc \m{n-1} jest liczbą parzystą. Skoro tak, to \m{n-1 + 2} jest liczbą parzystą jako suma dwóch liczb parzystych. W takim razie \m{n+1 \in X}.
+    \end{itemize}
+\end{enumerate}
+Na mocy zasady indukcji z twierdzenia \ref{theo:induction-v5}, dla każdego \m{n \in \mathbb{N}}, \m{n \in X}, więc każde \m{n} jest parzyste.
+\end{example}
+
+Powyższe wnioskowanie jest oczywiście błędne. Mamy wiele przykładów liczb naturalnych, które nie są parzyste. Gdzie jest jednak błąd? 
+
+Żebyśmy mogli skorzystać z faktu, że \m{n-1 \in X}, musimy upewnić się, że nasze założenie indukcyjne mówiło coś o \m{n-1}, czyli, że \m{n-1 \geq 0} i \m{n-1 \leq n} . Oczywiście, prawdą jest, że \m{n-1 \leq n}. Czy \m{n-1 \geq 0}? Jedyne co wiemy o \m{n} to fakt, że należy do zbioru \m{X}. To znaczy, że jest liczbą naturalną oraz liczbą parzystą. Skoro \m{n} jest parzystą liczbą naturalną, to w szczególności może być równe \m{0} -- wtedy \m{n-1=0-1=-1}. Oczywiście,\m{-1 \not\geq 0}. W takim razie nasze założenie indukcyjne nie mówiło nic o tym, że \m{n-1 \in X}, nie możemy więc z tego skorzystać.
+
+Prawidłowy dowód wymagałby więc rozpatrzenia dwóch przypadków: gdy \m{n = 0} oraz gdy \m{n \geq 0}. Jeśli \m{n \geq 0}, to całe rozumowanie jest poprawne. Jeśli jednak \m{n=0}, to \m{n+1=1} nie jest liczbą parzystą, więc nie należy do \m{X}. Z tego powodu dowód jest niepoprawny -- należy zawsze sprawdzić, czy korzystając z założenia, nie wychodzimy poza zakres liczb, o których założyliśmy, że rzeczywiście są elementami \m{X}.
+
+Poniższy przykład przedstawia poprawne rozumowanie z wykorzystaniem zasady indukcji w wersji \ref{theo:induction-v5}
+
+\begin{example}
+Pokażemy, że dla każdej liczby naturalnej \m{n \geq 2}, \m{n} możemy zapisać jako iloczyn liczb pierwszych, to znaczy, \m{n = p_1 \cdot \ldots \cdot p_a} dla jakichś liczb pierwszych \m{p_1, \ldots, p_a}. 
+
+\begin{enumerate}
+    \item Niech \m{X} będzie takim podzbiorem zbioru liczb naturalnych, że
+    
+     \[
+        X = \set{n \in \mathbb{N}}{n \text{ można zapisać jako iloczyn liczb pierwszych}}
+    \]
+    
+    Pokażemy, że dla każdego \m{n \geq 2} , \m{n \in X}
+    \item Użyjemy zasady indukcji z twierdzenia \ref{theo:induction-v5}
+    
+    \item Pokażmy, że:
+    \begin{itemize}
+        \item \textbf{Podstawa indukcji:}
+        Oczywiście, \m{2 \in X}, ponieważ \m{2} jest iloczynem jednej liczby pierwszej
+        
+        \item \textbf{Krok indukcyjny:}
+        Weźmy dowolne \m{n} i załóżmy, że dla wszystkich liczb naturalnych \m{i} takich, że \m{i \geq 2} oraz \m{i \leq n}, \m{i \in X}. Pokażemy, że \m{n+1 \in X}.
+        
+        Rozpatrzmy dwa przypadki:
+        \begin{itemize}
+            \item \m{n+1} jest liczbą pierwszą
+            
+            Wtedy \m{n+1} jest iloczynem jednej liczy pierwszej, więc \m{n+1 \in X}
+            
+            \item \m{n+1} jest liczbą złożoną. 
+            
+            To znaczy, że istnieje liczba pierwsza \m{p}, będąca dzielnikiem \m{n+1}, oraz jakaś liczba naturalna \m{k} taka, że \m{p \cdot k = n+1}. 
+            
+            Chcemy skorzystać z faktu, że \m{k \in X}. Musimy pokazać, że \m{k \geq 2} oraz \m{k \leq n}.
+            
+            \begin{itemize}
+                \item \m{k \geq 2}
+                
+                Przypomnijmy, że \m{k} jest taką liczbą naturalną, że istnieje liczba pierwsza \m{p}, taka, że \m{k \cdot p = n+1}.
+                
+                Skoro \m{k} jest liczbą naturalną, to \m{k \geq 0}.
+                
+                Zauważmy, że \m{n} jest liczbą naturalną, wiec \m{n+1 \geq 1}. Skoro tak, to \m{n+1 \neq 0}, więc \m{k \neq 0}. To oznacza, że \m{k \geq 1}.
+                
+                Wiemy też, że \m{p} jest liczbą pierwszą, a \m{n+1} jest liczbą złożoną, więc \m{k \neq 1}, a skoro tak, to \m{k \geq 2}.
+                
+                \item \m{k \leq n}
+                
+                Skoro \m{p} jest liczbą pierwszą, to \m{p \geq 2}. Skoro tak, to \m{k < n+1}, więc \m{k \leq n}.
+            \end{itemize}
+            
+            Wiemy więc, że \m{k \in X}. Skoro tak, to z definicji zbioru \m{X}, istnieją pewne liczby pierwsze \m{p_1, p_2, \dots, p_i}, że \m{k = p_1 \cdot p_2 \cdot \dots \cdot p_i}. Skoro tak, to \m{n+1} możemy zapisać jako 
+            
+            \[
+                n+1 = p \cdot k = p \cdot p_1 \cdot p_2 \cdot \dots \cdot p_i
+            \]
+            
+            Czyli \m{n+1} możemy zapisać jako iloczyn liczb pierwszych.
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+Na mocy zasady indukcji z twierdzenia \ref{theo:induction-v5} dla każdej liczby naturalnej \m{n \geq 2}, \m{n \in X}, czyli każdą liczbę naturalną \m{n \geq 2} można zapisać jako iloczyn liczb pierwszych.
+\end{example}
+
+\section{Bardziej zaawansowane przykłady}
+
+Indukcja może również zostać użyta do pokazywania własności struktur bardziej skomplikowanych niż liczby naturalne. Dla przykładu, weźmy proste wyrażenia algebraiczne zbudowane jedynie z nawiasów, liczb naturalnych i działań: mnożenia, dzielenia, odejmowania i dodawania. Dla uproszczenia nie będziemy za wyrażenie uznawać wyrażenia pustego (to znaczy każde wyrażenie powinno zawierać przynajmniej jedną liczbę). 
+
+Przykładami wyrażeń algebraicznych mogą być: \m{1 + 2 - 10 \cdot 14}, \m{(1 + 2 - 10) \cdot 14} czy \m{8}, natomiast przykładami napisów, które wyrażeniem nie są, może być na przykład \m{3+} (\m{+} powinien łączyć dwa wyrażenia algebraiczne) albo \m{4+\cdot 2} (\m{+} i \m{\cdot} nie mogą występować bezpośrednio obok siebie).
+
+\textbf{Długością} takiego wyrażenia nazywać będziemy liczbę operacji, które ono zawiera. Tak więc \m{1 + 2 - 10 \cdot 14} ma długość \m{3}, tak samo jak \m{(1 + 2 - 10) \cdot 14}, z kolei \m{8} ma długość \m{0}.
+
+Spójrzmy teraz na poniższy dowód i zastanówmy się nad jego poprawnością:
+
+\begin{example}[Niepoprawny dowód indukcyjny]
+Pokażmy, że dowolne wyrażenie długości \m{n} zawiera \m{n+1} liczb.
+
+\begin{enumerate}
+    \item Niech \m{X} będzie takim podzbiorem \m{\mathbb{N}}, że
+    
+    \[
+        X = \set{n \in \mathbb{N}}{\text{dowolne wyrażenie długości } n \text{ zawiera } n+1 \text{ liczb}}
+    \]
+    
+    Pokażemy, że \m{X = \mathbb{N}}
+    
+    \item Użyjemy zasady indukcji w wersji \ref{theo:induction-v1}
+    
+    \item Pokażemy, że
+    
+    \begin{itemize}
+        \item \textbf{Podstawa indukcji:} 
+        
+        Oczywiście, dowolne wyrażenie długości \m{0} składa się z jednej liczby, więc \m{0 \in X}.
+        
+        \item \textbf{Krok indukcyjny:} 
+        
+        Weźmy dowolne \m{n} i załóżmy, że \m{n \in X}. Pokażmy, że \m{n+1 \in X}. 
+        
+        Weźmy dowolne wyrażenie \m{\varphi} długości \m{n}, oraz dowolne działanie \m{\diamond} i dowolną liczbę~\m{l}. 
+        
+        Skoro \m{\varphi} jest długości \m{n}, to z założenia indukcyjnego, \m{\varphi} zawiera \m{n+1} liczb. Skoro tak, to wyrażenie \m{\varphi \diamond l} jest wyrażeniem długości \m{n+1} i zawiera \m{n+1+1 = n+2} liczb, więc \m{n+1 \in X}
+    \end{itemize}
+\end{enumerate}
+
+Na mocy zasady indukcji z twierdzenia \ref{theo:induction-v1}, \m{X = \mathbb{N}}.
+\end{example}
+
+Czy powyższy dowód jest więc poprawny? Żeby się o tym przekonać zastanówmy się, czy rzeczywiście pokazaliśmy coś dla \textbf{dowolnego} wyrażenia. Oczywiście, dowolne wyrażenie długości \m{0} może być tylko w postaci pojedynczej liczby, z podstawą indukcji nie ma więc żadnego problemu. Spójrzmy jednak na krok indukcyjny. Czy rzeczywiście jest tak, że dowolne wyrażenie długości \m{n+1} mogę uzyskać ,,dopisując'' coś do jakiegoś wyrażenia długości \m{n}? Co z wyrażeniem \m{(1+2) \cdot (1+2)}? Jest to wyrażenie długości \m{3}, jednak czy istnieje jakieś wyrażenie długości \m{2} które, po ,,dopisaniu'' jakiejś operacji, stanie się właśnie nim? Wygląda na to, że nie.
+
+Ten problem często pojawia się podczas rozpatrywania struktur bardziej skomplikowanych niż liczby naturalne. Można by było oczywiście próbować w pewien sposób opisać wszystkie przypadki, jednak wydaje się, że byłoby to skomplikowane zadanie, oraz, że łatwo byłoby coś pominąć. Czy istnieje prostszy sposób na opisanie tego?
+
+Rozpatrując struktury takie jak ta opisana wyżej, warto jest, zamiast \textbf{rozszerzać} problem mniejszy, zacząć od \textbf{większego} problemu, a potem \textbf{zredukować} go do problemu \textbf{mniejszego}. To znaczy, wziąć \textbf{dowolne} wyrażenie długości \m{n+1} i spróbować znaleźć w nim wyrażenia mniejszej długości, dla których mamy założenie indukcyjne. Zastanówmy się więc, czy możemy znaleźć jakiś sposób, by w wyrażeniu długości \m{n+1} znaleźć wyrażenia długości mniejszej.
+
+Dowolne wyrażenie można oczywiście obliczyć, stosując znane nam reguły kolejności wykonywania działań. Można także mówić o działaniu, które wykonamy jako \textit{ostatnie} podczas obliczania wyrażenia, tak więc w wyrażeniu \m{1 + 2 - 10 \cdot 14} ostatnim działaniem będzie~,,$-$'', z kolei w \m{(1 + 2 - 10) \cdot 14} będzie nim~,,$\cdot$''. Dowolne wyrażenie można więc podzielić na dwa wyrażenia mniejszej długości i połączyć je tym działaniem, tak więc \m{1 + 2 - 10 \cdot 14} można rozpisać jako różnicę wyrażeń \m{1 + 2} oraz \m{10 \cdot 14}. Otrzymane w ten sposób wyrażenia są \textbf{mniejsze} niż wyrażenie, od którego zaczęliśmy. Uzbrojeni w tą wiedzę, możemy przeprowadzić już poprawny dowód indukcyjny. W tym celu wykorzystamy silniejszą zasadę indukcji.
+
+\begin{example}
+Pokażmy, że dowolne wyrażenie długości \m{n} zawiera \m{n+1} liczb.
+
+\begin{enumerate}
+    \item Niech \m{X} będzie takim podzbiorem \m{\mathbb{N}}, że
+    
+    \[
+        X = \set{n \in \mathbb{N}}{\text{dowolne wyrażenie długości } n \text{ zawiera } n+1 \text{ liczb}}
+    \]
+    
+    Pokażemy, że \m{X = \mathbb{N}}
+    
+    \item Użyjemy zasady indukcji w wersji \ref{theo:induction-v5}
+    
+    \item Pokażemy, że
+    
+    \begin{itemize}
+        \item \textbf{Podstawa indukcji:} 
+        
+        Dowolne wyrażenie długości \m{0} składa się z jednej liczby, więc \m{0 \in X}.
+        
+        \item \textbf{Krok indukcyjny:} 
+        
+        Weźmy dowolne \m{n} i załóżmy, że dla wszystkich liczb naturalnych \m{i} takich, że \m{i \geq 0} oraz \m{i \leq n}, \m{i \in X}. Pokażmy, że \m{n+1 \in X}. 
+        
+        W tym celu weźmy dowolne wyrażenie \m{\varphi} długości \m{n+1}, oraz wybierzmy działanie \m{\diamond} które zostałoby wykonane jako ostatnie, podczas obliczana wartości wyrażenia, przy zastosowaniu standardowej kolejności wykonywania działań. Wyrażenie \m{\varphi} możemy zapisać jako \m{\varphi_1 \diamond \varphi_2}, gdzie \m{\varphi_1} ma długość \m{n_1 \geq 0} a \m{\varphi_2} ma długość \m{n_2 \geq 0}. 
+        
+        Wiemy, że \m{\varphi} ma długość \m{n_1 + n_2 + 1} ponieważ ma \m{n_1} operacji w \m{\varphi_1}, \m{n_2} operacji w \m{\varphi_2} oraz dodatkową operację \m{\diamond}. Skoro \m{n_1 + n_2 + 1 = n+1}, to \m{n_1 + n_2 = n}. Skoro zarówno \m{n_1} jak i \m{n_2} są większe bądź równe \m{0}, to \m{n_1 \leq n} oraz \m{n_2 \leq n}. Skoro tak, to z założenia indukcyjnego \m{n_1 \in X} oraz \m{n_2 \in X}.
+        
+        Wiemy więc, że \m{\varphi_1} zawiera \m{n_1+1} liczb, a \m{\varphi_2} zawiera ich \m{n_2 + 1}.
+        
+        Policzmy, ile liczb zawiera wyrażenie \m{\varphi_1 \diamond \varphi_2}:
+        
+        \[
+            n_1 + 1 + n_2 + 1 = n_1 + n_2 + 2 = n+2
+        \]
+        
+        Zawiera więc \m{n+2} liczby.
+        
+        Skoro dowolne wyrażenie długości \m{n+1} zawiera \m{n+2} liczby, to \m{n+1 \in X}.
+    \end{itemize}
+\end{enumerate}
+
+Na mocy zasady indukcji z twierdzenia \ref{theo:induction-v5}, \m{X = \mathbb{N}}.
+\end{example}
+
+Umiejętność redukowania zadania większego do zadań mniejszych jest niezwykle istotna i pozwala nam uniknąć niepotrzebnego rozpatrywania wszystkich możliwych przypadków. Skoro chcemy pokazać coś dla \textbf{każdego} obiektu wielkości \m{n}, powinniśmy najpierw wziąć \textbf{dowolny} obiekt; tak jak w powyższym przykładzie, by pokazać coś dla każdego wyrażenia długości \m{n+1}, na samym początku wzięliśmy \textbf{dowolne} wyrażenie danej długości, a następnie odnaleźliśmy w nim wyrażenia mniejsze, co umożliwiło nam wykorzystanie założenia indukcyjnego.

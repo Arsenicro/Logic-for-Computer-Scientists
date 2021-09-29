@@ -1,0 +1,217 @@
+\section{Dowód}
+Na przedmiocie ,,Logika dla Informatyków'' bardzo często będziemy się spotykać z pojęciem \textbf{dowodu}. Wiele zadań będzie polegało na udowodnieniu, że jakieś twierdzenie (zdanie) jest prawdziwe, bądź wykazaniu, że jest ono nieprawdziwe. Przez ,,dowód'' rozumieć będziemy ciąg pewnych zdań, z których każde będzie albo pewną oczywistą prawdą (\textit{aksjomatem}) albo będzie w pewien sposób \textbf{wynikać} z wcześniejszych zdań.
+
+Żeby lepiej zrozumieć, czym dowód jest oraz jak wygląda, na przykładzie kilku twierdzeń przedstawimy kilka popularnych technik dowodowych.
+
+\section{Przykłady i kontrprzykłady}
+\begin{example}
+Czy istnieje taka liczba naturalna \m{n}, że równość \m{n^2 = 2n} jest prawdziwa?
+
+Odpowiedzą na to pytanie jest oczywiście \textbf{tak}. To znaczy, że \textit{istnieje taka liczba naturalna \m{n}, że równość \m{n^2 = 2n} jest prawdziwa}. Jak jednak udowodnić, że to co napisaliśmy jest prawdą?
+
+Zazwyczaj, by pokazać, że jakiś zdefiniowany przez nas obiekt matematyczny istnieje, najprościej jest go po prostu \textit{wskazać}, czyli \textit{podać przykład}. W naszym przypadku, obiektem który chcielibyśmy wskazać, jest taka liczba naturalna \m{n}, że równość \m{n^2 = 2n} jest prawdziwa. Łatwo sprawdzić, że taką liczbą przykładowo może być \m{2}. Możemy więc przeprowadzić dowód:
+
+\begin{proof}
+Pokażemy, że istnieje taka liczba naturalna \m{n}, że równość \m{n^2 = 2n} jest prawdziwa.
+
+Weźmy \m{n = 2}. 
+
+Dla \m{n = 2} mamy \m{n^2 = 2^2 = 4} oraz \m{2n = 2\cdot 2 = 4}. To znaczy, że dla \m{n = 2}, \m{n^2 = 4 = 2n}. Istnieje więc taka liczba naturalna \m{n = 2}, że równość \m{n^2 = 2n} jest prawdziwa.
+\end{proof}
+
+Powyższy dowód składa się z dwóch głównych części. Po pierwsze, wskazaliśmy \textbf{przykład obiektu}, dla którego nasze zdanie byłoby prawdziwe (wskazaliśmy \m{n=2}). Następnie, używając prostej arytmetyki, pokazaliśmy, że obiekt który wskazaliśmy rzeczywiście spełnia daną własność (pokazaliśmy, że dla \m{n=2} zachodzi \m{n^2 = 2 n}).
+\end{example}
+
+\begin{example}
+\label{example:counterexample}
+Czy równość \m{(n + m)^2 = n^2 + m^2} jest prawdziwa dla wszystkich liczb naturalnych \m{n,m}?
+
+Tym razem odpowiedzią na powyższe pytanie jest \textbf{nie}. To znaczy, że \textit{nie dla wszystkich liczb naturalnych \m{n,m} równość \m{(n + m)^2 = n^2 + m^2} jest prawdziwa}. Jak jednak udowodnić, że to co napisaliśmy jest prawdą?
+
+W sytuacji takiej jak ta, w której mamy pokazać, że jakaś własność nie zachodzi dla \textbf{wszystkich} obiektów, zazwyczaj najłatwiej jest \textbf{wskazać kontrprzykład}, czyli przykład obiektu, który nie spełnia danej własności. Przeprowadźmy więc, jak w poprzednim przypadku, dowód:
+
+\begin{proof}
+Pokażemy, że nie dla wszystkich liczb naturalnych \m{n,m} prawdziwa jest równość \m{(n + m)^2 = n^2 + m^2}. Innymi słowy pokażemy, że istnieją takie liczy naturalne \m{n,m}, że równość \m{(n + m)^2 = n^2 + m^2} nie zachodzi.
+
+Weźmy \m{n = 1} i \m{m = 2}.
+
+Dla \m{n = 1} i \m{m = 2} mamy:
+
+\begin{itemize}
+    \item \m{(n + m)^2 = (1 + 2)^2 = 3^2 = 9}
+    \item \m{n^2 + m^2 = 1^2 + 2^2 = 1 + 4 = 5}
+\end{itemize}
+Oczywiście, \m{5 \neq 9}, istnieją więc takie liczby naturalne \m{n = 1} oraz \m{m = 2}, że równość \m{(n+m)^2 = n^2 + m^2} nie zachodzi, czyli nie dla wszystkich liczb naturalnych jest ona prawdziwa.
+\end{proof}
+
+Powyższy dowód, podobnie jak poprzedni, składa się z dwóch głównych części. Po pierwsze, wskazaliśmy \textbf{kontrprzykład}, czyli przykład obiektu, dla którego nasze zdanie nie byłoby prawdziwe (wskazaliśmy \m{n = 1} i \m{m = 2}). Następnie, używając prostej arytmetyki pokazaliśmy, że obiekt który wskazaliśmy rzeczywiście nie spełnia danej własności (pokazaliśmy, że dla \m{n = 1} i \m{m = 2} \textbf{nie} zachodzi \m{(n+m)^2 = n^2 + m^2}).
+\end{example}
+
+\section{Rozpatrywanie przypadków}
+\begin{example}
+\label{example:cases-example}
+Pokaż, że dla każdej liczby naturalnej \m{a}, takiej że \m{3 \not|\ a} (\m{3} nie dzieli \m{a}), prawdą jest, że \m{3|(a^2-1)} (\m{3} dzieli \m{a^2-1}).
+
+Zauważmy, że powyższe zdanie mówi, że mamy pokazać coś dla \textbf{każdej} liczby naturalnej. Nie możemy więc tego pokazać na przykładzie czy na konkretnej liczbie. Musimy wziąć \textbf{dowolną} liczbę naturalną \m{a}. Interesują nas jednak tylko takie liczby, dla których zachodzi \m{3 \not|\ a}. Skoro inne liczby nas nie interesują, możemy wziąć dowolną liczbę \m{a} i założyć, że \m{3 \not|\ a}. Następnie musimy udowodnić, że przy takim założeniu zachodzi również \m{3|a^2-1}. 
+
+\begin{proof}
+Pokażemy, że dla każdej liczby \m{a \in \mathbb{N}} takiej, że \m{3 \not|\ a}, zachodzi \m{3|a^2-1}.
+
+\textit{Weźmy dowolną liczbę naturalną \m{a} i załóżmy, że \m{3 \not|\ a}. Chcemy pokazać, że \m{3|a^2-1}.}
+
+Dość naturalnym sposobem, by rozwiązać takie zadanie, jest zastanowić się, jakie liczby naturalne \textbf{nie dzielą się} przez \m{3}. Będą to liczby, których reszta z dzielenia przez \m{3}, daje resztę \m{1} albo \m{2}. Więc, innymi słowy, liczby w postaci \m{3k + 1} albo \m{3k + 2}, dla pewnej liczby naturalnej \m{k}. Zamiast rozpatrywać oba przypadki razem, możemy każdy z nich rozpatrzeć z osobna. 
+
+\textit{Skoro \m{a} nie jest podzielne przez \m{3}, to \m{a} jest w postaci \m{3k+1} dla pewnej liczby naturalnej \m{k}, albo \m{3k+2} dla pewnej liczby naturalnej \m{k}.}
+
+\textit{Rozpatrzmy przypadki:}
+\begin{itemize}
+    \item \textit{Liczba \m{a} jest w postaci \m{3k+1} dla pewnej liczby naturalnej \m{k}.}
+    
+    Chcemy powiedzieć coś o liczbie \m{a^2 - 1}. Spróbujmy więc rozpisać, czym jest ta liczba w naszym przypadku:
+    
+    \textit{Mamy więc, że \m{a^2 - 1 = (3k+1)^2 - 1 = 9k^2 + 6k + 1 - 1 = 9k^2 + 6k}.}
+    
+    Naszym celem, jest wykazanie, że \m{3|a^2-1}, czyli, że \m{a^2-1} jest podzielne przez \m{3}.
+    
+    \textit{To oznacza, że \m{a^2 - 1= 9k^2 + 6k = 3 \cdot (3k^2 + 2k)}, czyli, że \m{a^2 - 1} jest podzielne przez \m{3}.}
+    
+    \textit{Pokazaliśmy więc, że jeśli \m{a = 3k + 1}, dla pewnej liczby naturalnej \m{k}, to \m{a^2 - 1} jest podzielne przez \m{3}.}
+    
+    \item \textit{Liczba jest w postaci \m{3k+2} dla pewnej liczby naturalnej \m{k}}.
+    
+    Dowód przebiega analogicznie do poprzedniego przypadku. Najpierw, skoro chcemy powiedzieć coś o liczbie \m{a^2 - 1}, powinniśmy ją rozpisać:
+    
+    \textit{Mamy więc, że \m{a^2 - 1 = (3k+2)^2 - 1 = 9k^2 + 12k + 4 - 1 = 9k^2 + 12k + 3}.}
+    
+     Znowu, naszym celem, jest wykazanie, że \m{3|a^2-1}, czyli, że \m{a^2-1} jest podzielne przez \m{3}.
+    
+    \textit{To oznacza, że \m{a^2 - 1 = 9k^2 + 12k + 3 = 3 \cdot (3k^2 + 4k + 1)}, czyli, że \m{a^2 - 1} jest podzielne przez \m{3}.}
+    
+    \textit{Pokazaliśmy więc, że jeśli \m{a = 3k + 2}, dla pewnej liczby naturalnej \m{k}, to \m{a^2 - 1} jest podzielne przez \m{3}.}
+\end{itemize}
+
+\textit{W obu przypadkach udowodniliśmy naszą tezę. Skoro to są jedyne przypadki przy naszych założeniach, to nasza teza jest prawdziwa dla każdej liczby naturalnej \m{a}.}
+
+\end{proof}
+
+Powyższy dowód mógłby ograniczyć się tylko do akapitów zapisanych kursywą, jednak w obecnej trochę rozciągniętej formie, nadal jest pełnoprawnym dowodem, przedstawiającym logiczny ciąg rozumowania, prowadzącym do udowodnienia zadanej przez nas tezy.
+\end{example}
+
+
+
+\section{Dowody nie wprost}
+
+\begin{example}
+\label{example:indirect}
+Pokaż, że istnieje nieskończenie wiele liczb pierwszych.
+
+Dowodzenie powyższej własności matematycznej (\textit{,,liczb pierwszych jest nieskończenie wiele''}) może okazać się dość trudne. Żeby pokazać wprost, że liczb pierwszych jest nieskończenie wiele, musielibyśmy bowiem w jakiś sposób przestawić nieskończony ciąg liczb pierwszych (na przykład za pomocą wzoru). W sytuacjach takich jak ta, czasem przydatne są \textbf{dowody nie wprost}. Dowody nie wprost podążają dość prostym schematem: jeśli chcemy udowodnić, że jakaś własność matematyczna zachodzi (w naszym przypadku własność to \textit{,,istnieje nieskończenie wiele liczb pierwszych''}), możemy najpierw założyć tezę do niej przeciwną (\textit{,,liczb pierwszych jest skończenie wiele''}) a potem przeprowadzić jakieś rozumowanie matematyczne, które doprowadzi nas do sprzeczności. Będzie to oznaczać, że nasze założenie nie było prawidłowe, a skoro tak, to nasza oryginalna teza była prawdziwa.
+
+\begin{proof}
+Pokażemy, że liczb pierwszych jest nieskończenie wiele.
+
+Korzystać będziemy z faktu:
+
+\begin{fact}
+Dla każdej liczby \m{n > 1}, jeśli żadna liczba pierwsza mniejsza od \m{n} nie dzieli \m{n}, to \m{n} jest pierwsza.
+\label{fact:prime}
+\end{fact}
+
+Załóżmy nie wprost, że nasze twierdzenie nie jest prawdziwe i że liczb pierwszych jest skończenie wiele.
+
+Niech \m{\mathbb{P} = \{ p_1, p_2, \dots, p_n \}} będzie zbiorem \textbf{wszystkich} liczb pierwszych.
+
+Rozważmy liczbę \m{m = p_1 \cdot p_2 \cdot \dots \cdot p_n + 1}. 
+
+Widzimy, że \m{m} jest większa od dowolnej liczby pierwszej \m{p_i \in \mathbb{P}}, więc \m{m \not\in \mathbb{P}}. 
+
+Dodatkowo, dla każdej liczby pierwszej \m{p_i \in \mathbb{P}}, \m{m} nie jest podzielne przez \m{p_i} -- reszta z dzielenia \m{m} przez \m{p_i} jest równa \m{1}. 
+
+Oznacza to, że \textbf{żadna} liczba pierwsza nie dzieli \m{m} (bo w zbiorze \m{\mathbb{P}} są wszystkie liczby pierwsze), więc w szczególności, żadna liczba pierwsza mniejsza od \m{m} nie dzieli \m{m}. Z faktu \ref{fact:prime} mamy więc, że \m{m} jest liczbą pierwszą.
+
+Dostaliśmy więc, że \m{m} jest liczbą pierwszą, która nie należy do zbioru \m{\mathbb{P}}, który był zbiorem \textbf{wszystkich} liczb pierwszych. To prowadzi nas do sprzeczności z założeniem, że liczb pierwszych jest skończenie wiele.
+
+Skoro tak, to liczb pierwszych jest nieskończenie wiele, a to chcieliśmy pokazać.
+\end{proof}
+
+Powyższy dowód był typowym przykładem dowodu nie wprost. Żeby udowodnić naszą tezę, założyliśmy najpierw tezę przeciwną. Następnie przeprowadziliśmy rozumowanie, które doprowadziło nas do sprzeczności: \textit{jeśli} zbiór liczb pierwszych byłby skończony, to moglibyśmy skonstruować zbiór \m{\mathbb{P}} \textbf{wszystkich} liczb pierwszych, a następnie skonstruować liczbę pierwszą, która do tego zbioru nie należy. To oznacza, że nasz zbiór \m{\mathbb{P}} nie był zbiorem \textbf{wszystkich} liczb pierwszych, więc nasze założenie, że liczb pierwszych jest skończenie wiele, było nieprawdziwe; liczb pierwszych musi być więc nieskończenie wiele.
+
+\end{example}
+
+\begin{example}
+\label{example:even-square}
+Pokaż, że dla dowolnej liczby naturalnej \m{a}, jeśli liczba \m{a^2} jest parzysta, to liczba \m{a} także jest parzysta.
+
+Ten dowód również można przeprowadzić nie wprost. Mamy pokazać, że dla dowolnej liczby naturalnej \m{a}, jeśli \m{a^2} jest liczbą parzystą, to \m{a} także będzie liczbą parzystą. Na początku weźmiemy więc dowolną liczbę naturalną \m{a} i założymy, że \m{a^2} jest liczbą parzystą, a potem założymy \textbf{nie wprost}, że \m{a} nie jest liczbą parzystą (lub, że jest liczbą \textit{nieparzystą}). Następnie spróbujemy dojść do sprzeczności.
+
+\begin{proof} Pokażemy, że dla dowolnej liczby naturalnej \m{a}, jeśli liczba \m{a^2} jest parzysta, to liczba \m{a} także jest parzysta.
+
+Weźmy dowolną liczbę naturalną \m{a}, taką, że \m{a^2} jest parzyste.
+
+Załóżmy nie wprost, że \m{a} nie jest liczbą parzystą. Skoro tak, to \m{a} jest w postaci \m{2k+1}, dla pewnej liczby naturalnej \m{k}.
+
+Skoro \m{a = 2k+1}, to \m{a^2 = (2k+1)^2 = 4k^2 + 4k + 1 = 2 \cdot (2k^2 + 2k) + 1}. 
+
+Ale to oznacza, że \m{a^2 = 2 b + 1} dla \m{b = 2k^2+2k}. \m{b} jest oczywiście liczbą naturalną, bo \m{k} jest liczbą naturalną.
+
+Oznacza to, że \m{a^2} nie jest liczbą parzystą, co jest sprzeczne z naszym założeniem.
+
+Dowodzi to, że dla dowolnej liczby naturalnej \m{a}, jeśli liczba \m{a^2} jest parzysta, to liczba \m{a} także jest parzysta.
+\end{proof}
+
+Dowód ten przebiega bardzo podobnie do poprzedniego. Założyliśmy, że liczba \m{a} nie jest parzysta mimo, że \m{a^2} była parzysta. Prostymi rachunkami ustaliliśmy, że jeśli \m{a} nie byłaby parzysta, to \m{a^2} także nie byłaby parzysta, a przecież naszym założeniem było, że \m{a^2} jest liczbą parzystą.
+\end{example}
+
+\begin{example}
+\label{example:irrational}
+Pokaż, że \m{\sqrt{2}} jest liczbą niewymierną.
+
+\begin{proof}
+Pokażemy, że \m{\sqrt{2}} jest liczbą niewymierną.
+
+Załóżmy nie wprost, że \m{\sqrt{2}} jest liczbą wymierną. To znaczy, że \m{\sqrt{2} = \frac{p}{q}}, dla pewnych \m{p,q \in \mathbb{N}}, które nie posiadają wspólnych dzielników (każdy ułamek mogę w ten sposób przedstawić, dzieląc licznik i mianownik przez ich wszystkie wspólne dzielniki).
+
+Mamy więc, że \m{\sqrt{2} = \frac{p}{q}}, więc \m{2 = \frac{p^2}{q^2}}, czyli \m{p^2 = 2q^2}. To oznacza, że \m{p^2} jest \textbf{liczbą parzystą} (bo jest równe iloczynowi dwójki przez jakąś liczbę). Korzystając z faktu, który udowodniliśmy w ćwiczeniu \ref{example:even-square}, wnioskujemy, że \m{p} także jest liczbą parzystą, tj. istnieje pewna liczba \m{p'}, taka, że \m{p = 2p'}. 
+
+Mamy więc, że \m{p^2 = 2q^2}, oraz \m{p = 2p'}, czyli \m{ 2q^2 = p^2 = (2p')^2 = 4(p')^2}. To oznacza, że \m{4(p')^2 = 2q^2}, więc \m{2(p')^2 = q^2}. Oznacza to, że \m{q^2} jest liczbą parzystą i znów, korzystając z faktu udowodnionego w ćwiczeniu \ref{example:even-square} dochodzimy do wniosku, że \m{q} także musi być liczbą parzystą.
+
+Oznacza to, że zarówno \m{p} jak i \m{q} są liczbami parzystymi, mają więc wspólny dzielnik: \m{2}. Zakładaliśmy, że \m{p} i \m{q} nie mają wspólnych dzielników, dostajemy więc sprzeczność.
+
+Oznacza to, że liczba \m{\sqrt{2}} nie może być liczbą wymierną, czyli \m{\sqrt{2}} jest liczbą niewymierną.
+\end{proof}
+
+Ten dowód przebiega w sposób bardzo podobny do poprzednich: żeby pokazać, że liczba \m{\sqrt{2}} jest niewymierna, zakładamy najpierw, że jest wymierna, więc można ją zapisać jako (skrócony) ułamek. Następnie dochodzimy do sprzeczności z faktem, że ułamek był maksymalnie skrócony: skoro każdy ułamek możemy skrócić, to sprzeczność musiała wynikać z faktu, że zapisaliśmy \m{\sqrt{2}} jako ułamek, czyli \m{\sqrt{2}} nie może być wymierna; liczba \m{\sqrt{2}} jest więc niewymierna.
+
+\end{example}
+
+\section{Dowody niekonstruktywne}
+
+We wcześniejszych rozdziałach mówiliśmy, że zazwyczaj by udowodnić \textbf{istnienie} pewnego obiektu matematycznego, najłatwiej jest ten obiekt wskazać. Nie zawsze jest to jednak proste a czasem może okazać się niemożliwe. Metoda \textbf{dowodów niekonstruktywnych} służy właśnie do tego, by pokazywać, że jakieś obiekty matematyczne istnieją, bez bezpośredniego wskazywania tych obiektów. 
+
+\begin{example}
+Pokaż, że istnieją dwie niewymierne liczby \m{x,y} takie, że \m{x^y} jest wymierna.
+\end{example}
+
+Normalnie wystarczyłoby wskazać takie dwie niewymierne liczby spełniające warunki z zadania. Może się jednak okazać, że nie jest to takie proste. Dowód niekonstruktywny jest natomiast dość krótki i prosty:
+
+\begin{proof}
+Istnieją dwie niewymierne liczby \m{x,y} takie, że \m{x^y} jest wymierna.
+
+Skorzystamy z faktu, że liczba \m{\sqrt{2}} jest niewymierna, który udowodniliśmy w ćwiczeniu \ref{example:irrational}.
+
+\begin{fact}
+\m{\sqrt{2}^{\sqrt{2}}} jest liczbą wymierną albo niewymierną.
+\end{fact}
+
+Skoro tak, to możemy rozpatrzeć dwa przypadki:
+
+\begin{itemize}
+    \item \m{\sqrt{2}^{\sqrt{2}}} jest liczbą wymierną. Wtedy, dla \m{x = \sqrt{2}} oraz \m{y = \sqrt{2}} (liczb niewymiernych \m{x,y}), \m{x^y = \sqrt{2}^{\sqrt{2}}} jest liczbą wymierną (z założenia).
+    
+    \item \m{\sqrt{2}^{\sqrt{2}}} jest liczbą niewymierną. Wtedy, dla \m{x = \sqrt{2}^{\sqrt{2}}} oraz \m{y = \sqrt{2}} (liczb niewymiernych \m{x,y}), \m{x^y =  {\sqrt{2}^{\sqrt{2}}}^{\sqrt{2}} = \sqrt{2}^{\sqrt{2} \cdot \sqrt{2}} = \sqrt{2}^2 = 2} jest liczbą wymierną.
+\end{itemize}
+
+W obu przypadkach wskazaliśmy niewymierne liczby \m{x,y} takie, że \m{x^y} było liczbą wymierną. Skoro to jedyne przypadki, to nasze twierdzenie jest prawdziwe. 
+\end{proof}
+
+Powyższy dowód nie wskazuje bezpośrednio liczb \m{x,y} spełniających warunki z zadania, nie jest więc dowodem konstruktywnym. Opiera się na spostrzeżeniu, że liczba \m{\sqrt{2}^{\sqrt{2}}} jest albo wymierna albo niewymierna. Dowód ten dałoby się więc uprościć, pisząc zamiast niego dowód konstruktywny, jeśli udałoby się udowodnić, że liczba \m{\sqrt{2}^{\sqrt{2}}} jest wymierna albo niewymierna, jednak wydaje się, że dowód tego faktu może okazać się dość trudny.

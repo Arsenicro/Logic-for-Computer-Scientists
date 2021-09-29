@@ -1,0 +1,53 @@
+% Opcje klasy 'iithesis' opisane sa w komentarzach w pliku klasy. Za ich pomoca
+% ustawia sie przede wszystkim jezyk i rodzaj (lic/inz/mgr) pracy, oraz czy na
+% drugiej stronie pracy ma byc skladany wzor oswiadczenia o autorskim wykonaniu.
+\documentclass[declaration,shortabstract,mgr]{settings/iithesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{amsfonts} 
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage[ruled]{algorithm2e}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{array}
+
+\usetikzlibrary{arrows}
+
+\tikzset{
+  treenode/.style = { circle, draw, minimum size=0.75cm, align=center, inner sep=0pt, text centered,
+    font=\sffamily},
+}
+
+\theoremstyle{definition}
+\newtheorem{theo}{Twierdzenie}[chapter]
+\newtheorem{ex}{Ćwiczenie}[chapter]
+\newtheorem{example}{Przykład}[chapter]
+\newtheorem{fact}{Fakt}[chapter]
+\newtheorem{definition}{Definicja}[chapter]
+\newtheorem{axiom}{Aksjomat}[chapter]
+
+%%remove double dot 
+\renewcommand{\thetheo}{\arabic{theo}}
+\renewcommand{\theexample}{\arabic{example}}
+\renewcommand{\theex}{\arabic{ex}}
+\renewcommand{\thefact}{\arabic{fact}}
+\renewcommand{\thedefinition}{\arabic{definition}}
+\renewcommand{\theaxiom}{\arabic{axiom}}
+
+%% algorithm2e translations:
+
+\renewcommand{\algorithmcfname}{Algorytm}
+
+\newcommand{\set}[2]{ \{\ #1\ |\ #2\ \} }
+\newcommand{\pair}[2]{\langle #1,#2 \rangle }
+\newcommand{\tuple}[1]{\langle #1 \rangle}
+\newcommand{\Xleftrightarrow}[1]{\stackrel{#1}{\Longleftrightarrow}}
+\newcommand{\xleftrightarrow}[1]{\stackrel{#1}{\longleftrightarrow}}
+\newcommand{\xequiv}[1]{\stackrel{#1}{\equiv}}
+\newcommand{\m}[1]{\({ #1 }\)}

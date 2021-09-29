@@ -1,0 +1,595 @@
+\section{Pojęcia pierwotne i aksjomaty}
+
+Język matematyki jest językiem sformalizowanym. Wszystkie nowe pojęcia budowane są na postawie pojęć już istniejących, które z kolei definiuje się za pomocą innych istniejących pojęć. W pewnym momencie trzeba jednak się zatrzymać, pewne pojęcia przyjmując za wiadome bez konieczności podawania definicji. Pojęcia takie nazywamy \textbf{pojęciami pierwotnymi}. Na podstawie tych właśnie pojęć definiuje się wszystkie inne. 
+
+Podstawowymi pojęciami pierwotnymi w \textbf{teorii mnogości} którą będziemy teraz omawiać, są pojęcia \textbf{zbioru} oraz relacja \textbf{należenia} (zapisujemy jako \m{\in}). Napis \m{x \in A} czytać będziemy jako ,,\m{x} należy do \m{A}''. Przykładem zbioru może być zbiór \m{ \{ pies, kot \} }, do którego należą elementy \m{ pies } oraz \m{ kot } (czyli \m{ pies \in \{pies, kot\} } oraz \m{ kot \in \{ pies, kot \} }). W zbiorze elementy nie mogą się powtarzać, nie ważna jest też kolejność wypisywania elementów.
+
+Rozważać będziemy zarówno zbiory skończone (zawierające \textit{n} elementów, dla pewnej liczby naturalnej \textit{n}) jak i zbiory nieskończone (których liczby elementów nie możemy ograniczyć przez żadne \textit{n}, na przykład zbiór liczb naturalnych \m{\mathbb{N}}).
+
+Warto zwrócić uwagę na to, że elementami zbioru mogą być dowolne obiekty. Możemy sobie na przykład wyobrazić zbiór \m{ \{ 1, kot, \mathbb{N} \} }, którego posiada trzy elementy: \m{1}, \m{kot} oraz \m{\mathbb{N}}.
+
+Zbiorem, który nie zawiera żadnych elementów, nazywać będziemy \textbf{zbiorem pustym} i zapisywać będziemy jako \m{ \emptyset }. Prawdziwe jest więc stwierdzenie
+
+\[ 
+\forall{x}\ x \not\in \emptyset 
+\]
+\begin{center}
+    \textit{,,Dla każdego elementu \m{x}, \m{x} nie należy do zbioru pustego''}
+\end{center}
+
+Zbiory \m{ A = \{1,2 \} } oraz \m{ B = \{2,1 \} } są \textbf{równe}, ponieważ zawierają dokładnie te same elementy. Ściślej mówiąc, każdy element należący do \m{A} należy też do \m{B}, a każdy element który należy do \m{B} należy także do \m{A}. Zbiory są równe \textbf{tylko wtedy} gdy spełniają powyższą zależność. Zasadę tą nazywamy \textbf{zasadą ekstensjonalności}
+
+\begin{axiom}[Zasada ekstensjonalności]
+Dla dowolnych zbiorów \m{A} oraz \m{B}, mówimy, że \m{A = B} wtedy i tylko wtedy, gdy prawdziwa jest formuła
+\[ 
+\forall{x}\ (x \in A \Leftrightarrow x \in B)
+\]
+\begin{center}
+    \textit{,,Dla każdego elementu \m{x}, \m{x} należy do \m{A} wtedy i tylko wtedy, gdy \m{x} należy do \m{B}''}
+\end{center}
+\end{axiom}
+
+Powyższe zdanie jest przykładem \textbf{aksjomatu}, czyli zdania które przyjmujemy za prawdziwe bez potrzeby podawania jego dowodu. Podobnie jak w przypadku pojęć pierwotnych, które służyły jako podstawa do definiowania nowych pojęć, aksjomaty stanowią podstawę do przeprowadzania dowodów.
+
+W omawianej przez nas teorii mnogości aksjomatów jest więcej. Jednym z przykładów może być \textbf{aksjomat zbioru pustego} który gwarantuje nam, że istnieje zbiór który nie zawiera żadnych elementów:
+
+\begin{axiom}[Aksjomat zbioru pustego]
+Zbiór pusty istnieje
+\end{axiom}
+
+Nie będziemy tutaj definiować wszystkich aksjomatów ani szczegółowo ich omawiać, warto jednak zdawać sobie sprawę z tego, że pewne aksjomaty istnieją i są potrzebne, nawet jeśli w większości przypadków nie będziemy z nich jawnie korzystać. Zainteresowanych czytelników odsyłamy więc do podręczników do teorii mnogości.
+
+\textbf{Aksjomat zbioru pustego} gwarantuje nam więc, że istnieje przynajmniej jeden zbiór pusty. Używając \textbf{zasady ekstensjonalności} możemy wzmocnić to twierdzenie, pokazując, że zbiór pusty jest dokładnie jeden.
+
+\begin{proof}
+Załóżmy nie wprost, że istnieją przynajmniej dwa zbiory puste. Weźmy więc dwa dowolne, różne zbiory puste \m{\emptyset_1} oraz \m{\emptyset_2}. Wiemy, że zbiory są różne, to znaczy, że \m{\emptyset_1 \neq \emptyset_2}.
+
+Zauważmy, że z definicji zbioru pustego, dla każdego \m{x}, formuły \m{x \in \emptyset_1} oraz \m{x \in \emptyset_2}  są fałszywe. Skoro tak, to formuła \m{ x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2 } jest prawdziwa dla dowolnego \m{x}. Prawdziwa jest więc formuła:
+
+\[
+\forall{x}\ (x \in \emptyset_1 \Leftrightarrow x \in \emptyset_2)
+\]
+
+Powyższa formuła to nic innego jak \textbf{zasada ekstensjonalności}. Na jej mocy możemy więc stwierdzić, że zbiory \m{\emptyset_1} i \m{\emptyset_2} są równe.
+
+Otrzymujemy sprzeczność z założeniem, że istnieją przynajmniej dwa zbiory puste. Oznacza to, że istnieje co najwyżej jeden zbiór pusty, a z \textbf{aksjomatu zbioru pustego} wiemy, że istnieje przynajmniej jeden zbiór pusty. Skoro tak, to istnieje dokładnie jeden zbiór pusty.
+
+\end{proof}
+
+%section 2
+\section{Podzbiory}
+Używając zdefiniowanych wyżej pojęć pierwotnych (\textbf{zbiór} oraz \textbf{należenie}) zdefiniować możemy relację \textbf{zawierania} (co oznaczać będziemy jako \m{\subseteq}). 
+
+\begin{definition}[Podzbiór]
+Zbiór \m{A} będzie \textbf{podzbiorem} zbioru \m{B} (co będziemy zapisywać jako \m{A \subseteq B}), jeśli każdy element należący do zbioru \m{A}, będzie należeć także do zbioru \m{B}.
+
+\[
+\forall{x}\ (x \in A \Rightarrow x \in B)
+\]
+\begin{center}
+    \textit{,,Dla każdego elementu \m{x}, jeśli \m{x} należy do \m{A}, to \m{x} należy także to \m{B}''}
+\end{center}
+\end{definition}
+
+Zbiór \m{\{ kot \}} jest więc podzbiorem zbioru \m{\{ kot, pies \}} (czyli \m{\{ kot \} \subseteq \{ kot, pies \}}), ponieważ każdy element zbioru \m{ \{ kot \} } (jest dokładnie jeden element, \m{kot}) jest elementem zbioru \m{ \{ kot, pies \} }. 
+
+W przypadku podzbiorów bardzo ważnym jest, by pamiętać o różnicy pomiędzy \textbf{zawieraniem} a \textbf{należeniem}. Dla przykładu, dla zbioru \m{ A = \{ 1, kot, \mathbb{N} \} }, \m{\mathbb{N}} jest \textbf{elementem} zbioru \m{A}, więc \m{\mathbb{N} \in A}. Nie jest jednak prawdą, że \m{\mathbb{N} \subseteq A}, ponieważ w zbiorze \m{\mathbb{N}} istnieją elementy (na przykład \m{2 \in \mathbb{N}}) które do zbioru \m{A} nie należą. Prawdą jest jednak, że \m{\{  \mathbb{N} \} \subseteq A} (ale w tym przypadku nieprawdą jest, że \m{\{  \mathbb{N} \} \in A}).
+
+Zgodnie z definicją, zbiór \m{\{ 1,2 \}} jest podzbiorem zbioru \m{\{ 1,2 \}}. Dowolny zbiór \m{A} jest swoim własnym podzbiorem, ponieważ wszystkie elementy należące do zbioru \m{A} w oczywisty sposób należą też do zbioru \m{A}.
+
+Podobnie zbiór pusty \m{\emptyset} jest podzbiorem dowolnego zbioru \m{A}, ponieważ wszystkie elementy należące do zbioru pustego (a nie ma takich elementów), należą do zbioru \m{A}. Można też o tym myśleć w drugą stronę: czy istnieje jakiś element, który należy do zbioru \m{\emptyset} a nie należy do zbioru \m{A}? Zbiór pusty nie zawiera żadnych elementów, nie znajdziemy więc w nim kontrprzykładu.
+
+Podzbiory posiadają jeszcze jedną ciekawą własność. Jeśli zbiór \m{A} jest podzbiorem zbioru \m{B}, oraz zbiór \m{B} jest podzbiorem zbioru \m{A} (czyli \m{A \subseteq B} i \m{B \subseteq A}), to \m{A = B}. Własność tą można udowodnić korzystając z \textbf{zasady ekstensjonalności}:
+
+\begin{proof}
+Pokażemy, że dla dowolnych zbiorów \m{A} i \m{B}, jeśli \m{A \subseteq B} oraz \m{B \subseteq A}, to \m{A = B}.
+
+Weźmy więc dowolne zbiory \m{A} i \m{B} i załóżmy, że \m{A \subseteq B} oraz \m{B \subseteq A}. Skoro tak, to prawdziwa jest formuła
+
+\[
+\underbrace{\forall{x}\ (x \in A \Rightarrow x \in B)}_{\text{Bo } A \subseteq B} \wedge \underbrace{\forall{x}\ (x \in B \Rightarrow x \in A)}_{\text{Bo } B \subseteq A}
+\]
+
+Korzystając z znanych nam praw rachunku kwantyfikatorów, możemy przeprowadzić ciąg równoważnych przejść:
+
+\[
+\begin{split}
+    A \subseteq B \wedge B \subseteq A
+    & \equiv \forall{x}\ (x \in A \Rightarrow x \in B) \wedge \forall{x}\ (x \in B \Rightarrow x \in A) 
+    \\& \equiv \forall{x}\ (x \in A \Rightarrow x \in B \wedge x \in B \Rightarrow x \in A) 
+    \\& \equiv \forall{x}\ (x \in A \Leftrightarrow x \in B)
+\end{split}
+\]
+
+Prawdziwa jest więc formuła \m{\forall{x}\ (x \in A \Leftrightarrow x \in B)}. Korzystając z \textit{zasady ekstensjonalności} możemy więc stwierdzić, że \m{A = B}
+\end{proof}
+
+Dowód ten łatwo jest przeprowadzić także w drugą stronę. Możemy więc stwierdzić, że \m{A = B} \textit{wtedy i tylko wtedy}, gdy \m{A \subseteq B} oraz \m{B \subseteq A}.
+
+Przy okazji powyższego dowodu, warto zwrócić uwagę na użycie ,,\m{\equiv}`` zamiast ,,\m{\Leftrightarrow}``. Ma to na celu zaznaczyć, że napis ,,\m{L \equiv P}'' nie jest formułą, w przeciwieństwie do napisu ,,\m{L \Leftrightarrow P}''. Napis ,,\m{L \equiv P}'' jest napisem \textbf{metajęzyka} (czyli języka, w którym rozmawiamy o matematyce, w przeciwieństwie do samego języka matematyki) oznaczającym, że napisy \m{L} oraz \m{P} są równoważne, lub, że formuła \m{L \Leftrightarrow P} jest prawdziwa. 
+
+\begin{ex}
+Czy istnieją zbiory \m{A} i \m{B} takie, że:
+
+\begin{itemize}
+    \item \m{A \in B} i \m{A \subseteq B}?
+    \item \m{A \in A}?
+    \item \m{A \in B} i \m{B \in A}
+    \item \m{A \subseteq A}?
+\end{itemize}
+\end{ex}
+
+\section{Rodziny zbiorów}
+Elementami zbiorów mogą być różne obiekty, w szczególności same zbiory. Łatwo jest sobie wyobrazić zbiór złożony tylko i wyłącznie ze zbiorów. Przykładem takiego zbioru może być zbiór złożony ze zbioru \m{ \{ 1 \} } oraz zbioru \m{ \{ 1,2 \} }, to znaczy zbiór \m{ \{ \{1\}, \{1,2\} \} }.
+
+Zbiór, którego elementami są inne zbiory, nazywany jest \textbf{rodziną zbiorów}. Innym przykładem rodziny zbiorów może być zbiór złożony ze zbioru liczb naturalnych i zbioru liczb rzeczywistych \m{\{ \mathbb{N}, \mathbb{R} \}}.
+
+Dla dowolnego zbioru \m{A} możemy zdefiniować zbiór, którego elementami są wszystkie podzbiory zbioru \m{A}. Na przykład podzbiorami zbioru \m{\{1,2\}} są zbiory \m{\{1\}}, \m{\{2\}}, \m{\{1,2\}} oraz oczywiście zbiór pusty \m{\emptyset}. Zbiór \m{\{\emptyset, \{ 1 \}, \{ 2 \}, \{ 1,2 \}\}} nazywamy \textbf{zbiorem potęgowym} zbioru \m{\{1,2\}}. Podobnie, zbiorem potęgowym zbioru \m{\{\mathbb{N}, \mathbb{R}\}} jest zbiór \m{\{\emptyset, \{ \mathbb{N} \}, \{ \mathbb{R} \}, \{ \mathbb{N}, \mathbb{R} \} \} }.
+
+\begin{definition}[Zbiór potęgowy]
+Zbiorem potęgowym zbioru \m{A}, oznaczane \m{P(A)}, nazywamy zbiór złożony ze wszystkich podzbiorów \m{A}.
+
+\[
+P(A) = \set{B}{B \subseteq A}
+\]
+\begin{center}
+    \textit{,,Zbiór wszystkich elementów \m{B} takich, że \m{B} jest podzbiorem \m{A}''}
+\end{center}
+\end{definition}
+
+Dowolny zbiór potęgowy jest również \textbf{rodziną zbiorów}, ponieważ jego elementami są inne zbiory.
+
+%section 3
+\section{Operacje na zbiorach}
+Podstawowymi operacjami, które będziemy wykonywać na zbiorach, będą operacje \textbf{sumy}, \textbf{przekroju} oraz \textbf{różnicy}. Zacznijmy od ich zdefiniowania.
+
+\begin{definition}[Suma zbiorów]
+\textbf{Sumą} zbiorów \m{A} i \m{B} nazywamy zbiór zawierający wszystkie elementy należące do zbioru \m{A} lub do zbioru \m{B} i niezawierający innych elementów. Sumę zapisywać będziemy jako~\m{A \cup B}. Formalnie:
+
+\[
+x \in A \cup B \Xleftrightarrow{\text{def}} x \in A \vee x \in B
+\]
+\begin{center}
+    \textit{\m{x} należy do sumy zbiorów \m{A} i \m{B} z definicji wtedy i tylko wtedy, gdy \m{x} należy do \m{A} lub \m{x} należy do \m{B}}
+\end{center}
+\end{definition}
+
+\begin{definition}[Przekrój zbiorów]
+\textbf{Przekrojem} zbiorów \m{A} i \m{B} nazywamy zbiór zawierający wszystkie elementy które należą zarówno do zbioru \m{A} jak i do zbioru \m{B} i niezawierający innych elementów. Przekrój zapisywać będziemy jako~\m{A \cap B}. Formalnie:
+
+\[
+x \in A \cap B \Xleftrightarrow{\text{def}} x \in A \wedge x \in B
+\]
+\begin{center}
+    \textit{\m{x} należy do przekroju zbiorów \m{A} i \m{B} z definicji wtedy i tylko wtedy, gdy \m{x} należy do \m{A} oraz \m{x} należy do \m{B}}
+\end{center}
+\end{definition}
+
+\begin{definition}[Różnica zbiorów]
+\textbf{Różnicą} zbiorów \m{A} i \m{B} nazywamy zbiór zawierający wszystkie elementy należące do zbioru \m{A}, ale nie należące do zbioru \m{B} i niezawierający innych elementów. Różnicę zapisywać będziemy jako~\m{A \setminus B}. Formalnie:
+
+\[
+x \in A \setminus B \Xleftrightarrow{\text{def}} x \in A \wedge x \not\in B
+\]
+\begin{center}
+    \textit{\m{x} należy do różnicy zbiorów \m{A} i \m{B} z definicji wtedy i tylko wtedy, gdy \m{x} należy do \m{A} oraz \m{x} nie należy do \m{B}}
+\end{center}
+\end{definition}
+
+Dla przykładu, dla zbiorów \m{ A = \{ 1,2,3 \} } i \m{ B = \{ 3,4 \} }, suma \m{ A \cup B} \\wynosi~\m{\{ 1,2,3 \} \cup \{ 3,4 \} = \{ 1,2,3,4 \}} (ponieważ \m{1,2,3} należą do \m{A}, a \m{4} należy do \m{B}), przekrój \m{A \cap B} wynosi \m{\{ 1,2,3 \} \cap \{ 3,4 \} = \{ 3 \}} (ponieważ tylko \m{3} należy zarówno do \m{A} jak i do \m{B}), a różnica \m{A \setminus B} wynosi \m{\{ 1,2,3 \} \setminus \{ 3,4 \} = \{ 1,2 \}} (ponieważ \m{1,2} należą do \m{A} ale nie należą do \m{B}, z kolei \m{3} należy zarówno do \m{A} jak i do \m{B}).
+
+\begin{ex}
+Dla poniższych zbiorów \m{A} i \m{B}, oblicz \m{A \cup B}, \m{A \cap B} oraz \m{A \setminus B}.
+
+\begin{itemize}
+    \item \m{A = \{ 1,2 \} }, \m{B = \{ 3 \} }
+    \item \m{A = \{ 3 \} }, \m{B = \{ 1,2 \} }
+    \item \m{A = \{ 1,2 \} }, \m{B = \emptyset }
+    \item \m{A = \{ 1,2 \} }, \m{B = \{ \emptyset \} }
+    \item \m{A = \{ \{1,2\}, \{3,4\} \}}, \m{B = \{ \{1,2\}, 3, 4 \}}
+\end{itemize}
+\end{ex}
+
+Powyższe operacje posiadają wiele ciekawych własności. Dla przykładu, można pokazać, że \m{A \cup (B \cap C) = (A \cup B) \cap (A \cup C) }. 
+
+\begin{proof}
+Pokażemy, że \m{A \cup (B \cap C) = (A \cup B) \cap (A \cup C) }. W tym celu skorzystamy z faktu, że dla dowolnych zbiorów \m{X} oraz \m{Y}, jeśli \m{X \subseteq Y} oraz \m{Y \subseteq X} to \m{X = Y}. Pokażemy więc dwie inkluzje (zawierania).
+
+\begin{enumerate}
+    \item \m{\underbrace{A \cup (B \cap C)}_{L} \subseteq \underbrace{(A \cup B) \cap (A \cup C)}_{P} }
+    
+    Musimy pokazać coś dla dowolnych zbiorów. Weźmy więc dowolne zbiory \m{A}, \m{B} oraz \m{C}. Z definicji zawierania musimy pokazać, że dla dowolnego \m{x}, jeśli \m{x \in L} to \m{x \in P}. Weźmy więc dowolnego \m{x} i załóżmy, że \m{x \in A \cup (B \cap C)}. Z definicji oznacza to, że \m{ x \in A} lub \m{x \in B \cap C}.
+    
+    Musimy pokazać, że \m{x \in (A \cup B) \cap (A \cup C)}, to znaczy, z definicji przekroju zbiorów, że \m{x \in A \cup B} \textbf{oraz} \m{x \in A \cup C}.
+    
+    Wiemy, że \m{ x \in A} lub \m{x \in B \cap C}, rozpatrzmy więc dwa przypadki: 
+    
+    \begin{itemize}
+        \item \m{x \in A}. W takim razie wiemy, z definicji sumy zbiorów, że zachodzi również \m{{x \in A \cup B}} oraz \m{x \in A \cup C} (ponieważ \m{x} należy do \m{A}, należy też do sumy \m{A} i dowolnego zbioru), a to chcieliśmy pokazać.
+        
+        \item \m{x \in B \cap C}. Z definicji przekroju oznacza to, że \m{x \in B} oraz \m{x \in C}. Skoro \m{x \in B}, to z definicji sumy zbiorów, \m{x \in A \cup B}. Podobnie, skoro \m{x \in C}, to z definicji sumy zbiorów, \m{x \in A \cup C}. Mamy więc, że \m{x \in A \cup B} oraz \m{x \in A \cup C}, a to chcieliśmy pokazać.
+    \end{itemize}
+    
+    Pokazaliśmy, że jeśli \m{ x \in A \cup (B \cap C)} to \m{x \in (A \cup B) \cap (A \cup C)}, więc inkluzja zachodzi.
+    
+    \item \m{(A \cup B) \cap (A \cup C) \subseteq A \cup (B \cap C)}
+    
+    Weźmy dowolne zbiory \m{A}, \m{B} oraz \m{C}. Weźmy również dowolny element \m{x} i załóżmy, że~\m{x \in (A \cup B) \cap (A \cup C)}. Korzystając z definicji przekroju możemy więc wywnioskować, że \m{x \in A \cup B} oraz \m{x \in A \cup C}. 
+    
+    Musimy pokazać, że \m{x \in A \cup (B \cap C)}, to znaczy, z definicji sumy zbiorów, że \m{x \in A} \textbf{lub} \m{x \in B \cap C}. Rozpatrzmy dwa przypadki:
+    
+    \begin{itemize}
+        \item \m{x \in A}. W tym przypadku nie musimy nic pokazywać, ponieważ \m{x \in A}.
+        \item \m{x \not\in A}. Skoro \m{x \in A \cup B} oraz \m{x \not\in A}, to z definicji sumy wiemy, że \m{{x \in B}}. Podobnie, skoro \m{x \in A \cup C} oraz \m{x \not\in A}, to z definicji sumy \m{{x \in C}}. Z definicji przekroju mamy więc, że \m{x \in B \cap C}, a to chcieliśmy pokazać. 
+    \end{itemize}
+\end{enumerate}
+
+Pokazaliśmy dwie inkluzje, mamy więc, że \m{A \cup (B \cap C) = (A \cup B) \cap (A \cup C)}
+\end{proof}
+
+Powyższy dowód można przeprowadzić rozpisując definicje i korzystając z praw rachunku zdań oraz praw rachunku kwantyfikatorów.
+
+\begin{proof}
+Pokażemy, że \m{\underbrace{A \cup (B \cap C)}_{L} = \underbrace{(A \cup B) \cap (A \cup C)}_{P} }. 
+
+Korzystając z definicji oraz praw rachunku zdań oraz praw rachunku kwantyfikatorów pokażemy, że napis \m{x \in L} jest równoważny napisowi \m{x \in P}. Oznaczać to będzie, że formuła \m{\forall{x}\ (x \in L \Leftrightarrow x \in P)} jest prawdziwa, więc, z \textbf{zasady ekstensjonalności}, \m{L = P}.
+
+\[
+\begin{split}
+    x \in L 
+    & \equiv\ x \in A \cup (B \cap C) 
+    \\& \xequiv{(1)} x \in A \vee x \in (B \cap C)
+    \\& \xequiv{(2)} x \in A \vee (x \in B \wedge x \in C)
+    \\& \xequiv{(3)} (x \in A \vee x \in B) \wedge (x \in A \vee x \in C)
+    \\& \xequiv{(4)} x \in (A \cup B) \wedge x \in (A \cup C)
+    \\& \xequiv{(5)} x \in ((A \cup B) \cap (A \cup C))
+    \\& \equiv x \in P
+\end{split}
+\]
+
+Przejście \m{(1)} wynika z definicji sumy zbiorów. Przejście \m{(2)} wynika z definicji przekroju zbiorów. Przejście \m{(3)} wynika z \textit{prawa rozdzielności alternatywy względem koniunkcji}. Przejście \m{(4)} również wynika z definicji sumy zbiorów, a przejście \m{(5)} z definicji przekroju zbiorów. 
+\end{proof}
+
+Korzystając z powyższego sposobu, czasem warto jest najpierw maksymalnie rozpisać lewą i prawą stronę, a potem zauważyć związek pomiędzy nimi. 
+
+%section 5
+\section{Operacje nieskończone na zbiorach}
+Operacje sumy i przekroju można uogólnić na dowolne rodziny zbiorów. Przypomnijmy, że rodzina zbiorów, to zbiór, którego elementami są inne zbiory.
+
+Do tej pory mówiliśmy, że sumą \m{A \cup B} nazywamy zbiór, którego każdy element należy albo do \m{A} albo do \m{B}. Gdybyśmy dodali do tej sumy kolejny zbiór i próbowali zdefiniować, co znaczy suma \m{A \cup B \cup C}, naturalną wydaje się być definicja mówiąca, że wynikiem będzie zbiór którego każdy element należy albo do \m{A} albo do \m{B} albo do \m{C}. Innymi słowy, należy do \textbf{któregokolwiek} ze zbiorów \m{A}, \m{B} lub \m{C}.
+
+Podobnie sprawa ma się z przekrojem. Przekrojem \m{A \cap B} nazywamy zbiór, którego każdy element należy zarówno do \m{A} jak i do \m{B}. \m{A \cap B \cap C} to zbiór, którego każdy element należy do \m{A}, do \m{B} oraz do \m{C}. Innymi słowy, należy do \textbf{każdego} ze zbiorów \m{A}, \m{B} i \m{C}.
+
+\begin{definition}[Suma rodziny zbiorów]
+Sumą rodziny zbiorów \m{\mathcal{A}} nazywać będziemy zbiór zawierający tylko elementy, które występują w \textbf{którymkolwiek} ze zbiorów należących do \m{\mathcal{A}}. Formalnie:
+
+\[
+\bigcup \mathcal{A} = \set{x}{\exists{X \in \mathcal{A}} \ (x \in X)}
+\]
+
+\begin{center}
+    \textit{Zbiór takich elementów \m{x}, że istnieje zbiór \m{X} należący do rodziny zbiorów \m{A} taki, że \m{x \in X}}
+\end{center}
+\end{definition}
+
+\begin{definition}[Przekrój rodziny zbiorów]
+Przekrojem rodziny zbiorów \m{\mathcal{A}} nazywać będziemy zbiór zawierający tylko elementy, które występują w \textbf{każdym} ze zbiorów należących do \m{\mathcal{A}}. Formalnie:
+
+\[
+\bigcap \mathcal{A} = \set{x}{\forall{X \in \mathcal{A}} \ (x \in X)}
+\]
+\begin{center}
+    \textit{Zbiór takich elementów \m{x}, że dla każdego zbioru \m{X} należącego do rodziny zbiorów \m{A} zachodzi \m{x \in X}}
+\end{center}
+\end{definition}
+
+Weźmy przykładową rodzinę zbiorów \m{\mathcal{A} = \{ \{ 1,2 \}, \{ 2,3 \}, \{ 2,3,4 \} \} }. Policzmy sumę rodziny zbiorów \m{\mathcal{A}}:
+
+\[
+\begin{split}
+\bigcup \mathcal{A} 
+&= \bigcup \{ \{ 1,2 \}, \{ 2,3 \}, \{ 2,3,4 \} \} 
+\\& = \{ 1,2 \} \cup \{ 2,3 \} \cup \{ 2,3,4 \}
+\\& = \{ 1,2,3 \} \cup \{ 2,3,4 \}
+\\& = \{ 1,2,3,4 \}
+\end{split}
+\]
+
+Wynikiem jest więc zbiór \m{\{1,2,3,4\}}. Każdy z elementów tego zbioru należy bowiem do jakiegoś (przynajmniej jednego) zbioru z rodziny zbiorów \m{\mathcal{A}}, co więcej nie ma elementu, który należałby do jakiegoś zbioru z rodziny zbiorów \m{\mathcal{A}}, a nie należy do naszego wyniku. Co z przekrojem rodziny zbiorów \m{\mathcal{A}}?
+
+\[
+\begin{split}
+\bigcap \mathcal{A} 
+&= \bigcap \{ \{ 1,2 \}, \{ 2,3 \}, \{ 2,3,4 \} \} 
+\\& = \{ 1,2 \} \cap \{ 2,3 \} \cap \{ 2,3,4 \}
+\\& = \{ 2 \} \cap \{ 2,3,4 \}
+\\& = \{ 2 \}
+\end{split}
+\]
+
+Wynikiem jest więc zbiór \m{ \{ 2 \} }. \m{2} jest bowiem jedynym elementem, który należy do każdego ze zbiorów z rodziny \m{\mathcal{A}} (to znaczy należy do każdego ze zbiorów z rodziny \m{\mathcal{A}}, a także nie ma elementu, który należałby do każdego ze zbiorów z rodziny \m{\mathcal{A}} a nie należałby do naszego wyniku).
+
+Czasem będzie nam wygodnie nazywać w jakiś sposób elementy rodziny zbiorów. Dla powyższego przykładu, możemy nazwać zbiór \m{ \{ 1,2 \} } jako \m{A_1}, zbiór \m{ \{ 2,3 \} } jako \m{A_2} a zbiór \m{ \{ 2,3,4 \} } jako \m{A_3}. Rodzina zbiorów \m{\mathcal{A}} składa się więc ze zbiorów \m{A_1}, \m{A_2} i \m{A_3}. Taką rodzinę zbiorów \m{\mathcal{A}} nazywać będziemy \textbf{rodziną zbiorów indeksowaną elementami zbioru \m{\{ 1,2,3 \}}}. Oznacza to tyle, że elementami rodziny zbiorów \m{\mathcal{A}} są zbiory \m{A_1}, \m{A_2} i \m{A_3} czyli zbiory \m{A} z indeksami będącymi liczbami \m{1}, \m{2} i \m{3}. Taką rodzinę oznaczyć możemy na przykład \m{\{ A_i \}_{i \in \{ 1,2,3 \}}} lub \m{\set{A_i}{i \in \{ 1,2,3 \}}}
+
+Zbiór indeksów może być większy. Dla przykładu, zdefiniujmy sobie najpierw zbiór \m{A_i = \set{x \in \mathbb{N}}{x \leq i} } (zbiór wszystkich liczb naturalnych mniejszych bądź równych \m{i}). Niech teraz zbiór indeksów będzie zbiorem liczb naturalnych \m{\mathbb{N}}. Wtedy rodzina zbiorów \m{\{ A_i \}_{i \in \mathbb{N}}} wygląda następująco:
+
+\[
+\begin{split}
+\{ A_i \}_{i \in \mathbb{N}}
+&= \{ A_0, A_1, A_2, A_3, \dots \}  
+\\&= \{ \{ 0 \}, \{ 0,1 \}, \{ 0,1,2 \}, \{ 0,1,2,3 \}, \dots \} 
+\end{split}
+\]
+
+Zauważmy, że w powyższym przypadku kluczowe znaczenie ma poprawne zdefiniowanie zbioru indeksów. Rodzina zbiorów \m{\{ A_i \}_{i \in \mathbb{N}}} indeksowana liczbami naturalnymi jest bowiem inna niż rodzina \m{\{ A_i \}_{i \in \mathbb{Z}}} indeksowana liczbami całkowitymi, która wyglądałaby tak:
+
+\[
+\begin{split}
+\{ A_i \}_{i \in \mathbb{Z}}
+&= \{ \dots, A_{-2}, A_{-1}, A_0, A_1, A_2 \dots \}  
+\\&= \{ \dots, \emptyset, \emptyset, \{ 0 \}, \{ 0,1 \}, \{ 0,1,2 \}, \dots \} 
+\\&= \{ \emptyset, \{ 0 \}, \{ 0,1 \}, \{ 0,1,2 \}, \{ 0,1,2,3 \}, \dots \} 
+\end{split}
+\]
+
+Bo zbiór \m{A_i}, dla każdego \m{i < 0}, jest zbiorem pustym.
+
+Oczywiście rozpatrywać możemy też pary, trójki, czwórki czy większe liczby indeksów. Zdefiniujmy sobie dla przykładu zbiór \m{A_{i,j} = \set{x \in \mathbb{N}}{i \leq x \leq j}} (zbiór wszystkich liczb naturalnych z przedziału \m{[i,j]}) dla \m{i,j} - dowolnych liczb naturalnych. Wtedy rodzina zbiorów \m{\{A_{i,j}\}_{\substack{i \in \mathbb{N}, \\j \in \mathbb{N}}}} wygląda następująco:
+
+
+\[
+\arraycolsep=1.4pt\def\arraystretch{2.2}
+\begin{array}{llcccccccccccc}
+\{A_{i,j}\}_{\substack{i \in \mathbb{N}, \\j \in \mathbb{N}}} &= \{ & A_{0,0}, & A_{0,1}, & A_{0,2}, & \dots, &  A_{1,0}, & A_{1,1}, & A_{1,2}, & \dots, & A_{2,0}, & A_{2,1}, & A_{2,2}, & \dots \} \\
+&= \{ & \{ 0 \}, & \{ 0,1 \}, & \{ 0,1,2 \}, & \dots, &  \emptyset, & \{ 1 \}, & \{ 1,2 \}, & \dots, & \emptyset, & \emptyset, & \{ 2 \}, & \dots \} 
+\end{array}
+\]
+
+Definicje sumy i przekroju indeksowanych rodzin zbiorów są takie same jak w przypadku zwykłych rodzin zbiorów. Dla rodziny zbiorów \m{\{ A_i \}_{i \in I}}, sumę \m{\bigcup \{ A_i \}_{i \in I}} dla uproszczenia oznaczać będziemy \m{\bigcup\limits_{i \in I} A_i}, podobnie przekrój \m{\bigcap \{ A_i \}_{i \in I}} oznaczać będziemy \m{\bigcap\limits_{i \in I} A_i}.
+
+Spójrzmy na wyrażenie \m{x \in \bigcup\limits_{i \in I} A_i}. Z definicji sumy rodziny zbiorów, oznacza to, że istnieje jakiś zbiór \m{X} w rodzinie zbiorów \m{\{ A_i \}_{i \in I}}, taki, że \m{x \in X}. W przypadku indeksowanej rodziny zbiorów, oznacza to, że \textbf{istnieje} pewien \textbf{indeks} \m{i' \in I}, taki, że \m{x \in A_{i'}}.
+
+Podobnie, w przypadku przekroju indeksowanej rodziny zbiorów, wyrażenie \m{x \in \bigcap\limits_{i \in I} A_i} oznacza, że \textbf{dla każdego indeksu} \m{i' \in I}, \m{x \in A_{i'}}.
+
+\begin{example}
+\label{example:indexed-family}
+Rozpatrzmy zbiory \m{ A_{i,j} = \{ i, i+1, \dots, i+j-1 \} } gdzie \m{i \in \mathbb{Z}} jest dowolną liczbą całkowitą, a \m{j \in \mathbb{N}} jest dowolną liczbą naturalną. Jak nietrudno zauważyć, jest to zbiór \m{j} kolejnych liczb całkowitych, poczynając od \m{i}. Przykładowo, \m{A_{-1,10}} jest zbiorem \m{\{ -1,0,1,2,3,4,5,6,7,8 \}}, z kolei zbiór \m{A_{1,0}} jest zbiorem pustym. Policzmy następujące zbiory:
+
+\begin{enumerate}
+    \item \m{ \bigcup\limits_{j \geq 0} A_{0,j} }
+    
+    Mamy więc sumę rodziny zbiorów \m{\{A_{0,j}\}_{j \geq 0} = \{ A_{0,0}, A_{0,1}, A_{0,2}, \dots \}}. Zgodnie z definicją, każdy element tej sumy należy do zbioru \m{A_{0,j'}} dla \textbf{jakiegoś} indeksu \m{j' \geq 0}. Wynik możemy policzyć, wykonując operację sumy na kolejnych elementach indeksowanej rodziny zbiorów:
+    
+    \[
+        \begin{split}
+            \bigcup\limits_{j \geq 0} A_{0,j} 
+            &= A_{0,0} \cup A_{0,1} \cup A_{0,2} \cup A_{0,3} \cup \dots 
+            \\&= \emptyset \cup \{ 0 \} \cup \{ 0,1 \} \cup \{ 0,1,2 \} \cup \dots
+            \\&= \{ 0,1,2,3,\dots \}
+            \\&= \mathbb{N}
+        \end{split}
+    \]
+    
+    Mamy więc \m{ \bigcup\limits_{j \geq 0} A_{0,j} = \mathbb{N} }. Powyższe obliczenia nie są jednak jeszcze dowodem, a jedynie pewnym sposobem dotarcia do wyniku. Równość jeszcze należy udowodnić.
+    
+    \begin{proof}
+    Pokażemy, że \m{ \bigcup\limits_{j \geq 0} A_{0,j} = \mathbb{N} }. W tym celu pokażemy dwa zawierania.
+    \begin{itemize}
+        \item \m{ \bigcup\limits_{j \geq 0} A_{0,j} \subseteq \mathbb{N} }
+        
+        Weźmy dowolny element \m{x \in \bigcup\limits_{j \geq 0} A_{0,j}}. Z definicji zawierania musimy pokazać, że \m{x \in \mathbb{N}}. 
+        
+        Wiemy, że \m{ x \in \bigcup\limits_{j \geq 0} A_{0,j}}, co z definicji sumy rodziny zbiorów oznacza, że istnieje taki indeks \m{j' \geq 0}, że \m{x \in A_{0,j'}}.
+        
+        Weźmy więc taki indeks \m{j' \geq 0}, że \m{x \in A_{0,j'}}. Ponownie skorzystajmy z definicji, tym razem definicji zbioru \m{A_{0,j'}}.
+        
+        Zbiór \m{A_{0,j'}} jest zbiorem \m{j'} kolejnych liczb całkowitych, począwszy od zera, więc każdy jego element jest liczbą naturalną. W takim razie \m{x}, będący pewnym elementem zbioru \m{A_{0,j'}} także jest liczbą naturalną, więc \m{x \in \mathbb{N}}, a to chcieliśmy pokazać.
+        
+        \item \m { \mathbb{N} \subseteq \bigcup\limits_{j \geq 0} A_{0,j} }
+        
+        Weźmy dowolny element \m{x \in \mathbb{N}}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcup\limits_{j \geq 0} A_{0,j}}. Musimy więc pokazać, że istnieje taki indeks \m{j' \geq 0}, że \m{x \in A_{0,j'}}.
+        
+        Niech więc \m{j' = x+1}. Musimy pokazać, że \m{j' \geq 0} oraz \m{x \in A_{0,j'}}
+        \begin{itemize}
+            \item Wiemy, że \m{x} jest liczbą naturalną, więc \m{x+1 = j' \geq 0}.
+            \item Z definicji zbioru \m{A_{0,j'}}:
+            \[
+                A_{0,j'} = A_{0,x+1} = \{ 0, 1, 2, \dots, x+1-1 \} = \{ 0,1,2,\dots,x \} 
+            \]
+            
+            Więc rzeczywiście \m{ x \in A_{0,j'} }.
+        \end{itemize}
+    \end{itemize}
+    \end{proof}
+    
+    \item \m{ \bigcup\limits_{j \geq 0} A_{i,j} }
+    
+    \[
+        \begin{split}
+            \bigcup\limits_{j \geq 0} A_{i,j} 
+            &= A_{i,0} \cup A_{i,1} \cup A_{i,2} \cup A_{i,3} \cup \dots 
+            \\&= \emptyset \cup \{ i \} \cup \{ i,i+1 \} \cup \{ i,i+1,i+2 \} \cup \dots
+            \\&= \{ i,i+1,i+2,\dots \}
+            \\&= \set{x \in \mathbb{Z}}{x \geq i}
+        \end{split}
+    \]
+    
+    Mamy więc \m{ \bigcup\limits_{j \geq 0} A_{i,j} = \set{x \in \mathbb{Z}}{x \geq i} }. Powyższe obliczenia nie są jednak jeszcze dowodem, a jedynie pewnym sposobem dotarcia do wyniku. Równość jeszcze należy udowodnić.
+    
+    \begin{proof}
+    Pokażemy, że \m{ \bigcup\limits_{j \geq 0} A_{i,j} = \set{x \in \mathbb{Z}}{x \geq i} }. W tym celu pokażemy dwa zawierania.
+    \begin{itemize}
+        \item \m{ \bigcup\limits_{j \geq 0} A_{i,j} \subseteq \set{x \in \mathbb{Z}}{x \geq i} }
+        
+        Weźmy dowolny element \m{x \in \bigcup\limits_{j \geq 0} A_{i,j}}. Z definicji zawierania musimy pokazać, że \m{x \in \set{x \in \mathbb{Z}}{x \geq i}} to znaczy, że \m{x \in \mathbb{Z}} oraz \m{x \geq i}.
+        
+        Wiemy, że \m{ x \in \bigcup\limits_{j \geq 0} A_{i,j}}, co z definicji sumy rodziny zbiorów oznacza, że istnieje indeks \m{j' \geq 0} taki, że \m{x \in A_{i,j'}}. 
+        
+        Weźmy więc taki indeks \m{j' \geq 0}, że \m{x \in A_{i,j'}} i skorzystajmy z definicji zbioru \m{A_{i,j'}}. Zbiór \m{A_{i,j'}} jest zbiorem \m{j'} kolejnych liczb całkowitych, począwszy od \m{i}. Element \m{x} pochodzący ze zbioru \m{A_{i,j'}} jest więc liczbą całkowitą większą od \m{i}, więc \m{x \in \set{x \in \mathbb{Z}}{x \geq i}}.
+        
+        \item \m {\set{x \in \mathbb{Z}}{x \geq i} \subseteq \bigcup\limits_{j \geq 0} A_{i,j} }
+        
+        Weźmy dowolny element \m{x \in \mathbb{Z}}, \m{x \geq i}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcup\limits_{j \geq 0} A_{i,j}}, to znaczy, że istnieje taki indeks \m{j' \geq 0}, że \m{x \in A_{i,j'}}.
+        
+        Niech więc \m{j' = x-i+1}. Musimy pokazać, że \m{j' \geq 0} oraz, że \m{x \in A_{i,j'}}.
+        
+        \begin{itemize}
+            \item Wiemy, że \m{x \geq i}, więc \m{x-i+1 = j' \geq 0}.
+            \item Z definicji zbioru \m{A_{i,j'}}:
+            \[
+                A_{i,j'} = A_{i,x-i+1} = \{ i, i+1, \dots, i+x-i+1-1 \} = \{ i, i+1, \dots, x \}
+            \]
+            Co oznacza, że \m{x \in A_{i,j'}}.
+        \end{itemize}
+    \end{itemize}
+    \end{proof}
+    
+    \item \m{\bigcap\limits_{j \geq 1} A_{0,j}}
+    
+   Mamy więc przekrój rodziny zbiorów \m{\{A_{0,j}\}_{j \geq 1} = \{ A_{0,1}, A_{0,2}, A_{0,3}, \dots \}}. Zgodnie z definicją, każdy element tego przekroju należy do zbioru \m{A_{0,j'}} dla \textbf{dowolnego} indeksu \m{j' \geq 1}. Wynik możemy policzyć, wykonując operację przekroju na kolejnych elementach indeksowanej rodziny zbiorów:
+    
+    \[
+        \begin{split}
+            \bigcap\limits_{j \geq 1} A_{0,j}
+            &= A_{0,1} \cap A_{0,2} \cap A_{0,3} \cap \dots
+            \\&= \{ 0 \} \cap \{ 0, 1 \} \cap \{ 0,1,2 \} \cap \dots
+            \\&= \{ 0 \}
+        \end{split}
+    \]
+    
+    Mamy więc \m{\bigcap\limits_{j \geq 1} A_{0,j} = \{ 0 \}}. 
+    \begin{proof}
+    Pokażemy, ze  \m{\bigcap\limits_{j \geq 1} A_{0,j} = \{ 0 \}}. W tym celu pokażmy dwa zawierania
+    \begin{itemize}
+        \item \m{\bigcap\limits_{j \geq 1} A_{0,j} \subseteq \{ 0 \}}
+        
+        Weźmy dowolny element \m{x \in \bigcap\limits_{j \geq 1} A_{0,j}}. Z definicji zawierania musimy pokazać, że \m{x \in \{ 0 \} }. 
+        
+        Wiemy, że \m{x \in \bigcap\limits_{j \geq 1} A_{0,j}} co z definicji przekroju rodziny zbiorów oznacza, że dla każdego indeksu \m{j' \geq 1}, \m{x \in A_{0,j'}}.
+        
+        Skoro dla każdego indeksu \m{j' \geq 1} zachodzi \m{x \in A_{0,j'}}, to w szczególności dla indeksu \m{j'=1} zachodzi \m{x \in A_{0,1}}, a z definicji \m{A_{0,1} = \{ 0 \}}, więc \m{x \in \{ 0 \}}, a to chcieliśmy pokazać.
+        
+        \item \m{ \{ 0 \} \subseteq  \bigcap\limits_{j \geq 1} A_{0,j}}
+        
+        Weźmy dowolny element \m{x \in \{ 0 \}}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcap\limits_{j \geq 1} A_{0,j}}, to znaczy, że dla każdego indeksu \m{j' \geq 1}, \m{x \in A_{0,j'}}.
+        
+        Zauważmy, że \m{x = 0}, ponieważ zbiór \m{\{ 0 \}} ma jeden element. Musimy więc pokazać, że dla dowolnego indeksu \m{j' \geq 1}, \m{0 \in A_{0,j'}}.
+        
+        Weźmy więc dowolny indeks \m{j' \geq 1}. \m{A_{0,j'}} jest zbiorem \m{j'} kolejnych elementów, począwszy od \m{0}. To znaczy, \m{A_{0,j'} = \{ 0,1,\dots,j'-1 \}}. Skoro \m{j' \geq 1}, to \m{0 \in A_{0,j'}}, a to chcieliśmy pokazać.
+    \end{itemize}
+    \end{proof}
+    
+    \item \m{\bigcap\limits_{j \geq 1} A_{i,j}}
+    
+    \[
+        \begin{split}
+            \bigcap\limits_{j \geq 1} A_{i,j}
+            &= A_{i,1} \cap A_{i,2} \cap A_{i,3} \cap \dots
+            \\&= \{ i \} \cap \{ i, i+1 \} \cap \{ i,i+1,i+2 \} \cap \dots
+            \\&= \{ i \}
+        \end{split}
+    \]
+    
+    Mamy więc \m{\bigcap\limits_{j \geq 1} A_{i,j} = \{ i \}}. 
+    \begin{proof}
+    Pokażemy, ze  \m{\bigcap\limits_{j \geq 1} A_{i,j} = \{ i \}}. W tym celu pokażmy dwa zawierania
+    \begin{itemize}
+        \item \m{\bigcap\limits_{j \geq 1} A_{i,j} \subseteq \{ i \}}
+        
+        Weźmy dowolny element \m{x \in \bigcap\limits_{j \geq 1} A_{i,j}}. Z definicji zawierania musimy pokazać, że \m{x \in \{ i \} }. 
+        
+        Wiemy, że \m{x \in \bigcap\limits_{j \geq 1} A_{i,j}} co z definicji przekroju rodziny zbiorów oznacza, że dla każdego indeksu \m{j' \geq 1}, \m{x \in A_{i,j'}}. 
+        
+        Skoro dla każdego indeksu \m{j' \geq 1} zachodzi \m{x \in A_{0,j'}}, to w szczególności dla indeksu \m{j'=1}, \m{x \in A_{i,1}}. Z definicji zbioru \m{A_{i,1} = \{ i \}}, więc \m{x \in \{ i \}}, a to właśnie chcieliśmy pokazać.
+        
+        \item \m{ \{ i \} \subseteq  \bigcap\limits_{j \geq 1} A_{i,j}}
+        
+        Weźmy dowolny element \m{x \in \{ i \}}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcap\limits_{j \geq 1} A_{i,j}}, to znaczy, że dla każdego indeksu \m{j' \geq 1}, \m{x \in A_{i,j'}}.
+        
+        Zauważmy, że \m{x = i}, ponieważ zbiór \m{\{ i \}} ma jeden element. Musimy więc pokazać, że dla dowolnego indeksu \m{j' \geq 1}, \m{i \in A_{0,j'}}. 
+        
+        Weźmy więc dowolny indeks \m{j' \geq 1}. \m{A_{i,j'}} jest zbiorem \m{j'} kolejnych elementów, począwszy od \m{i}. To znaczy \m{A_{i,j'} = \{ i, i+1, \dots, i+j'-1 \} }. Skoro \m{j' \geq 1}, to \m{i \in A_{i,j'}}.
+    \end{itemize}
+    \end{proof}
+    
+    \item \m{ \bigcap\limits_{i \leq 3} \bigcup\limits_{j \geq 0} A_{i,j}}
+    
+    W tym przypadku zacznijmy od środka. Zdefiniujmy najpierw zbiór \m{B_{i} = \bigcup\limits_{j \geq 0} A_{i,j}}. Z jednego z poprzednich punktów wiemy, że \m{B_i = \set{x \in \mathbb{Z}}{x \geq i}}. Wystarczy więc policzyć \m{\bigcap\limits_{i \leq 3} B_i}.
+    
+    \[
+        \begin{split}
+            \bigcap\limits_{i \leq 3} B_i
+            &= B_3 \cap B_2 \cap B_1 \cap B_0 \cap B_{-1} \cap \dots 
+            \\&= \{ 3,4,5,\dots \} \cap \{ 2,3,4,\dots \} \cap \dots
+            \\&= \{3,4,5,\dots \}
+            \\&= \set{x \in \mathbb{Z}}{x \geq 3}
+        \end{split}
+    \]
+    
+    \begin{proof}
+    Pokażemy, że \m{ \bigcap\limits_{i \leq 3} B_i = \set{x \in \mathbb{Z}}{x \geq 3} }
+    \begin{itemize}
+        \item  \m{ \bigcap\limits_{i \leq 3} B_i \subseteq \set{x \in \mathbb{Z}}{x \geq 3} }
+        
+        Weźmy dowolny \m{x \in \bigcap\limits_{i \leq 3} B_i}. Z definicji zawierania musimy pokazać, że \m{x \in \set{x \in \mathbb{Z}}{x \geq 3}}. 
+        
+        Wiemy, że \m{x \in \bigcap\limits_{i \leq 3} B_i} co z definicji przekroju rodziny zbiorów oznacza, że dla każdego indeksu \m{i' \leq 3}, \m{x \in B_{i'}}.
+        
+        Skoro dla każdego indeksu \m{i' \leq 3}, \m{x \in B_{i'}}, to w szczególności dla indeksu \m{i' = 3} zachodzi \m{x \in B_3}. Z definicji \m{B_3 = \set{\mathbb{Z}}{x \geq 3}}, więc \m{x \in \set{\mathbb{Z}}{x \geq 3}}, a to chcieliśmy pokazać.
+        
+        \item \m{\set{x \in \mathbb{Z}}{x \geq 3} \subseteq \bigcap\limits_{i \leq 3} B_i }
+        
+        Weźmy dowolny \m{x \in \set{x \in \mathbb{Z}}{x \geq 3}}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcap\limits_{i \leq 3} B_i}, to znaczy, że dla każdego indeksu \m{i' \leq 3}, \m{x \in B_{i'}}.
+        
+        Weźmy więc dowolny indeks \m{i' \leq 3}. Wiemy, że \m{x \in \set{x \in \mathbb{Z}}{x \geq 3}}, co znaczy, że \m{x \in \mathbb{Z}} oraz \m{x \geq 3}. Skoro \m{x \geq 3} i \m{3 \geq i'}, to \m{x \geq i'}.
+        
+        Skoro \m{x \geq i'} oraz \m{x \in \mathbb{Z}}, to \m{x \in \set{x \in \mathbb{Z}}{x \geq i'}} więc \m{x \in B_{i'}}.
+    \end{itemize}
+    \end{proof}
+    
+    \item \m{ \bigcup\limits_{i \leq -3} \bigcap\limits_{j \geq 1} A_{i,j}  }
+    
+    Podobnie jak poprzednio, zacznijmy od środka. Niech \m{B_i = \bigcap\limits_{j \geq 1} A_{i,j}}. Z jednego z poprzednich punktów wiemy, że \m{B_i = \{ i \} }. Wystarczy więc policzyć \m{\bigcup\limits_{i \leq -3} B_i}
+    
+    \[
+    \begin{split}
+        \bigcup\limits_{i \leq -3} B_i
+        &= B_{-3} \cup B_{-4} \cup B_{-5} \cup \dots
+        \\&= \{ -3 \} \cup \{ -4 \} \cup \{ -5 \} \cup \dots
+        \\&= \{ -3,-4,-5,\dots \}
+        \\&= \set{x \in \mathbb{Z}}{x \leq -3}
+    \end{split}
+    \]
+    
+    \begin{proof}
+    Pokażemy, że \m{\bigcup\limits_{i \leq -3} B_i = \set{x \in \mathbb{Z}}{x \leq -3}}
+    
+    \begin{itemize}
+        \item \m{\bigcup\limits_{i \leq -3} B_i \subseteq \set{x \in \mathbb{Z}}{x \leq -3}}
+        
+        Weźmy dowolny \m{x \in \bigcup\limits_{i \leq -3} B_i}. Z definicji zawierania musimy pokazać, że \m{x \in \mathbb{Z}} oraz \m{x \leq -3}.
+        
+        Wiemy, że \m{x \in \bigcup\limits_{i \leq -3} B_i} co z definicji sumy rodziny zbiorów oznacza, że istnieje indeks \m{i' \in \mathbb{Z}}, \m{i' \leq -3} taki, że \m{x \in B_{i'}}.
+        
+        Weźmy więc taki indeks \m{i' \in \mathbb{Z}}, \m{i' \leq -3}, że \m{x \in B_{i'}}. 
+        
+        Z definicji zbioru \m{B_{i'} = \{ i' \}}. Skoro \m{x \in \{ i' \}}, to \m{ x = i' } (bo \m{\{ i' \}} ma jeden element), a skoro \m{i' \leq -3} oraz \m{i' \in \mathbb{Z}}, to \m{x \leq -3} oraz \m{x \in \mathbb{Z}}. Oznacza to, że \m{x \in \set{x \in \mathbb{Z}}{x \leq -3}}, a to chcieliśmy pokazać.
+        
+        \item \m{\set{x \in \mathbb{Z}}{x \leq -3} \subseteq \bigcup\limits_{i \leq -3} B_i}
+        
+        Weźmy dowolny \m{x \in \set{x \in \mathbb{Z}}{x \leq -3}}. Z definicji zawierania musimy pokazać, że \m{x \in \bigcup\limits_{i \leq -3} B_i}, to znaczy, że istnieje indeks \m{i' \leq -3} taki, że \m{x \in B_{i'}}.
+        
+        Niech więc \m{i' = x}. Musimy pokazać, że \m{i' \leq -3} oraz, że \m{x \in B_{i'}}
+        
+        \begin{itemize}
+            \item Skoro \m{x \in \set{x \in \mathbb{Z}}{x \leq -3}}, to \m{x \leq -3}, więc \m{x = i' \leq -3}.
+            \item Wiemy, że \m{x \in \{ x \}}, oraz \m{\{ x \} = B_x = B_{i'}}, więc \m{x \in B_{i'}}.
+        \end{itemize}
+    \end{itemize}
+    \end{proof}
+    
+\end{enumerate}
+
+\end{example}
+
+Powyższe ćwiczenie powinno przede wszystkim pokazać, że o ile być może łatwiej jest sobie na początku wyobrazić sumę i przekrój rodziny zbiorów jako wykonanie operacji sumy/przekroju na kolejnych elementach rodziny zbioru, to jest to tylko intuicja, dzięki której możemy dojść do jakiegoś wyniku. Otrzymany wynik należy jeszcze udowodnić zgodnie z podanymi definicjami, co zazwyczaj sprowadza się do pokazania równości zbiorów (początkowego i wynikowego). Dowody równości zbiorów mogą, jak w ćwiczeniu powyżej, zostać przeprowadzone opisowo, ale mogą być także przeprowadzone za pomocą rozpisania definicji i korzystania z praw rachunku zdań oraz praw rachunku kwantyfikatorów.
